@@ -1,0 +1,252 @@
+---
+// src/pages/contact.astro
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import FooterDirectory from '../components/FooterDirectory.astro';
+
+const contactFaqs = [
+  {
+    question: "How fast do you respond to seller support requests?",
+    answer: "Our team typically responds within 12 to 24 business hours. If you are experiencing an urgent evening dispatch issue, reach out via our community email with your printer model and batch size for rapid troubleshooting."
+  },
+  {
+    question: "Can I request custom label formats for other marketplaces?",
+    answer: "Yes! If you sell on JioMart, Ajio, Amazon Easy Ship, or Glowroad and have specific label cropping requirements, send us a sample test PDF through the contact form."
+  }
+];
+---
+
+<Layout
+  title="Contact Us | SmartLabelCrop.in - Seller Support & Community"
+  description="Need help setting up your thermal printer or have feedback for SmartLabelCrop? Contact our seller support desk. We help Indian merchants in Surat, Jaipur, and Tirupur."
+  canonicalUrl="https://smartlabelcrop.in/contact"
+  keywords="contact smartlabelcrop, meesho label cropper support, thermal printer calibration help, indian seller contact"
+  faqItems={contactFaqs}
+>
+  <Navbar />
+
+  <main class="flex-1 bg-white dark:bg-[#0A0A0A] text-neutral-800 dark:text-neutral-200 transition-colors">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+      
+      <!-- Breadcrumbs -->
+      <nav class="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400 mb-6 font-mono">
+        <a href="/" class="hover:text-black dark:hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-[#EA580C] font-semibold">Contact Us</span>
+      </nav>
+
+      <!-- Page Header -->
+      <header class="mb-12 border-b border-neutral-200 dark:border-neutral-800 pb-8 text-center sm:text-left">
+        <div class="inline-flex items-center gap-2 rounded-full border border-orange-200 dark:border-orange-900/60 bg-orange-50 dark:bg-orange-950/30 px-3 py-1 text-xs font-semibold text-[#EA580C] mb-4">
+          ★ WE ARE HERE FOR INDIAN MERCHANTS
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+          Get in Touch with Our Team
+        </h1>
+        <p class="mt-3 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 font-body max-w-2xl">
+          Have questions about TVS / TSC printer settings, custom fold-line parsing, or suggestions for new features? We would love to hear from you.
+        </p>
+      </header>
+
+      <!-- 2-Column Responsive Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        
+        <!-- Left Column: Form -->
+        <div class="lg:col-span-7 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#111111] p-6 sm:p-8 shadow-xs">
+          <h2 class="text-xl font-bold text-[#0A0A0A] dark:text-white mb-2 font-display">
+            Send Us a Message
+          </h2>
+          <p class="text-xs text-neutral-500 dark:text-neutral-400 mb-6">
+            Fill out the details below and we will get back to your email within 24 hours.
+          </p>
+
+          <form id="contact-form" class="space-y-4 text-xs sm:text-sm font-body">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contact-name" class="block font-semibold text-[#0A0A0A] dark:text-white mb-1.5">
+                  Your Full Name <span class="text-[#EA580C]">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  required
+                  placeholder="e.g. Ramesh Patel"
+                  class="w-full rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#161616] px-3 py-2.5 text-xs text-[#0A0A0A] dark:text-white focus:border-black dark:focus:border-white focus:outline-hidden"
+                />
+              </div>
+
+              <div>
+                <label for="contact-email" class="block font-semibold text-[#0A0A0A] dark:text-white mb-1.5">
+                  Email Address <span class="text-[#EA580C]">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="contact-email"
+                  required
+                  placeholder="ramesh@textiles.com"
+                  class="w-full rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#161616] px-3 py-2.5 text-xs text-[#0A0A0A] dark:text-white focus:border-black dark:focus:border-white focus:outline-hidden"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contact-platform" class="block font-semibold text-[#0A0A0A] dark:text-white mb-1.5">
+                  Primary Marketplace
+                </label>
+                <select
+                  id="contact-platform"
+                  class="w-full rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#161616] px-3 py-2.5 text-xs text-[#0A0A0A] dark:text-white focus:border-black dark:focus:border-white focus:outline-hidden"
+                >
+                  <option value="meesho">Meesho Supplier</option>
+                  <option value="flipkart">Flipkart / Shopsy Seller</option>
+                  <option value="amazon">Amazon Easy Ship</option>
+                  <option value="multiple">Multi-Channel Merchant</option>
+                  <option value="other">Other / Warehouse Logistics</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="contact-city" class="block font-semibold text-[#0A0A0A] dark:text-white mb-1.5">
+                  Seller Hub / City
+                </label>
+                <input
+                  type="text"
+                  id="contact-city"
+                  placeholder="e.g. Surat, Jaipur, Tirupur, Delhi"
+                  class="w-full rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#161616] px-3 py-2.5 text-xs text-[#0A0A0A] dark:text-white focus:border-black dark:focus:border-white focus:outline-hidden"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="contact-message" class="block font-semibold text-[#0A0A0A] dark:text-white mb-1.5">
+                Message & Details <span class="text-[#EA580C]">*</span>
+              </label>
+              <textarea
+                id="contact-message"
+                rows="4"
+                required
+                placeholder="Describe your question, printer model (e.g. TVS LP-46), or feature suggestion..."
+                class="w-full rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#161616] px-3 py-2.5 text-xs text-[#0A0A0A] dark:text-white focus:border-black dark:focus:border-white focus:outline-hidden leading-relaxed"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              id="contact-submit-btn"
+              class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg bg-[#0A0A0A] dark:bg-white px-6 py-2.5 text-xs font-bold text-white dark:text-[#0A0A0A] hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors shadow-2xs cursor-pointer"
+            >
+              Send Message
+            </button>
+
+            <!-- Success State Notice -->
+            <div id="contact-success-msg" class="hidden mt-4 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 p-4 text-xs text-emerald-800 dark:text-emerald-300">
+              <strong class="block font-semibold">Thank you! Your message has been prepared.</strong>
+              We will reach out to your email address shortly.
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Right Column: Direct Info & Community -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- Direct Emails Card -->
+          <div class="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#111111] p-6 shadow-2xs">
+            <h3 class="text-sm font-bold text-[#0A0A0A] dark:text-white mb-3">
+              Direct Inquiries
+            </h3>
+            <div class="space-y-3 text-xs">
+              <div>
+                <span class="text-neutral-500 block">General & Technical Support:</span>
+                <a href="mailto:support@smartlabelcrop.in" class="font-mono font-medium text-[#EA580C] hover:underline">
+                  support@smartlabelcrop.in
+                </a>
+              </div>
+              <div class="pt-2 border-t border-neutral-100 dark:border-neutral-800">
+                <span class="text-neutral-500 block">Privacy & Legal Desk:</span>
+                <a href="mailto:privacy@smartlabelcrop.in" class="font-mono font-medium text-[#0A0A0A] dark:text-white hover:underline">
+                  privacy@smartlabelcrop.in
+                </a>
+              </div>
+              <div class="pt-2 border-t border-neutral-100 dark:border-neutral-800">
+                <span class="text-neutral-500 block">Open Source Repository:</span>
+                <a href="https://github.com/manish2007ux896/label" target="_blank" rel="noopener noreferrer" class="font-mono text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white underline">
+                  github.com/manish2007ux896/label
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Community Card -->
+          <div class="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-gradient-to-br from-orange-50/60 to-white dark:from-neutral-900/60 dark:to-[#111111] p-6 shadow-2xs">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="h-2 w-2 rounded-full bg-[#EA580C] animate-pulse"></span>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#EA580C]">Seller Network</span>
+            </div>
+            <h3 class="text-base font-bold text-[#0A0A0A] dark:text-white">
+              Join Indian Seller WhatsApp Groups
+            </h3>
+            <p class="mt-2 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Connect with fellow e-commerce merchants in Surat, Jaipur, and Tirupur to discuss courier pickup rules, RTO disputes, and thermal printing optimizations.
+            </p>
+            <div class="mt-4">
+              <button
+                type="button"
+                onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent('Check out SmartLabelCrop.in - Free Meesho & Flipkart 4x6 Label Cropper & Multi-Order Rescuer: https://smartlabelcrop.in'), '_blank')"
+                class="inline-flex items-center gap-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 px-4 py-2 text-xs font-semibold text-white shadow-2xs transition-colors cursor-pointer"
+              >
+                <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/>
+                </svg>
+                Share on WhatsApp
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Hardware Calibration Link -->
+          <div class="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#141414] p-5 text-xs text-neutral-600 dark:text-neutral-400">
+            <strong class="text-[#0A0A0A] dark:text-white block mb-1">Looking for Thermal Printer Settings?</strong>
+            <span>Check out our recommended Seagull driver darkness and print speed calibration for TVS, TSC, Zebra, and Xprinter in the </span>
+            <a href="/#printers" class="text-[#EA580C] font-semibold hover:underline">Printer Setup Guide &rarr;</a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <FooterDirectory />
+</Layout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const successMsg = document.getElementById('contact-success-msg');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = (document.getElementById('contact-name') as HTMLInputElement)?.value;
+      const email = (document.getElementById('contact-email') as HTMLInputElement)?.value;
+      const platform = (document.getElementById('contact-platform') as HTMLSelectElement)?.value;
+      const city = (document.getElementById('contact-city') as HTMLInputElement)?.value;
+      const message = (document.getElementById('contact-message') as HTMLTextAreaElement)?.value;
+
+      if (successMsg) {
+        successMsg.classList.remove('hidden');
+      }
+
+      // Pre-fill a mailto link as fallback so user can send immediately
+      const subject = encodeURIComponent(`SmartLabelCrop Inquiry from ${name} (${city} - ${platform})`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPlatform: ${platform}\nCity: ${city}\n\nMessage:\n${message}`);
+      
+      setTimeout(() => {
+        window.location.href = `mailto:support@smartlabelcrop.in?subject=${subject}&body=${body}`;
+      }, 800);
+    });
+  }
+</script>

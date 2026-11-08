@@ -1,0 +1,165 @@
+---
+// src/pages/about.astro
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import FooterDirectory from '../components/FooterDirectory.astro';
+
+const aboutFaqs = [
+  {
+    question: "Who built SmartLabelCrop.in and why?",
+    answer: "SmartLabelCrop.in was built by Indian e-commerce technologists to solve the daily dispatch frustrations faced by fashion, textile, and lifestyle sellers on Meesho, Flipkart, and Shopsy. Our goal is to eliminate missing item claims and save hours of manual paper cutting every evening."
+  },
+  {
+    question: "How can the tool be 100% free with no monthly subscription?",
+    answer: "Because SmartLabelCrop is powered by client-side WebAssembly, your computer or phone browser performs 100% of the PDF rendering and vector calculations. We do not maintain expensive cloud PDF processing servers, allowing us to keep this tool completely free forever."
+  }
+];
+---
+
+<Layout
+  title="About Us | SmartLabelCrop.in - Built for Indian E-Commerce Merchants"
+  description="Learn about SmartLabelCrop's mission to eliminate dispatch losses for Indian sellers on Meesho, Flipkart, and Shopsy with 100% free WebAssembly tools."
+  canonicalUrl="https://smartlabelcrop.in/about"
+  keywords="about smartlabelcrop, meesho label cropper team, indian ecommerce dispatch tool, free thermal label cropper"
+  faqItems={aboutFaqs}
+>
+  <Navbar />
+
+  <main class="flex-1 bg-white dark:bg-[#0A0A0A] text-neutral-800 dark:text-neutral-200 transition-colors">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+      
+      <!-- Breadcrumbs -->
+      <nav class="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400 mb-6 font-mono">
+        <a href="/" class="hover:text-black dark:hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-[#EA580C] font-semibold">About Us</span>
+      </nav>
+
+      <!-- Hero Header -->
+      <header class="mb-12 border-b border-neutral-200 dark:border-neutral-800 pb-8">
+        <div class="inline-flex items-center gap-2 rounded-full border border-orange-200 dark:border-orange-900/60 bg-orange-50 dark:bg-orange-950/30 px-3 py-1 text-xs font-semibold text-[#EA580C] mb-4">
+          ★ EMPOWERING BHARAT'S E-COMMERCE SELLERS
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+          Building Zero-Loss Dispatch Infrastructure for Indian Merchants
+        </h1>
+        <p class="mt-4 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 font-body leading-relaxed max-w-2xl">
+          We are on a mission to eliminate dispatch bottlenecks, missing item penalties, and privacy risks for 20+ million Indian sellers across Surat, Jaipur, Tirupur, and beyond.
+        </p>
+      </header>
+
+      <!-- Content Grid -->
+      <div class="space-y-12">
+        
+        <!-- Story Section -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-bold text-[#0A0A0A] dark:text-white font-display">
+            The Story Behind SmartLabelCrop.in
+          </h2>
+          <p class="text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-body">
+            Every evening between 4:00 PM and 6:30 PM, packing floors across India’s major textile and manufacturing hubs turn into a frenzy. Warehouse workers in Surat saree karkhanas, Jaipur kurti manufacturers, and Tirupur knitwear units scramble to pack hundreds of polybags before courier pickup vans from Valmo, Ekart, and Delhivery arrive.
+          </p>
+          <p class="text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-body">
+            During our field research with ground-level sellers, we noticed two devastating, recurring patterns:
+          </p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+            <div class="rounded-xl border border-red-200 dark:border-red-900/60 bg-red-50/50 dark:bg-red-950/20 p-5">
+              <div class="text-xs font-bold text-red-600 uppercase tracking-wider mb-1">Issue #1: ₹300 RTO Bleed</div>
+              <p class="text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed font-body">
+                Whenever buyers ordered 2 or 3 kurtis, the tiny 6pt quantity text was overlooked. Helpers packed 1 piece, the customer claimed missing items, and the seller was penalized ₹300 to ₹500 in non-refundable courier fees.
+              </p>
+            </div>
+
+            <div class="rounded-xl border border-orange-200 dark:border-orange-900/60 bg-orange-50/50 dark:bg-orange-950/20 p-5">
+              <div class="text-xs font-bold text-[#EA580C] uppercase tracking-wider mb-1">Issue #2: Hidden SKU Cut-Offs</div>
+              <p class="text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed font-body">
+                Long customer addresses pushed the SKU and garment size below the thermal cut line. Packing boys had to open customer panels on desktops just to figure out what item to pack.
+              </p>
+            </div>
+          </div>
+
+          <p class="text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-body">
+            We built <strong>SmartLabelCrop.in</strong> to solve these challenges completely and permanently.
+          </p>
+        </section>
+
+        <!-- Values Section -->
+        <section class="space-y-6">
+          <h2 class="text-xl sm:text-2xl font-bold text-[#0A0A0A] dark:text-white font-display">
+            Our Guiding Engineering Principles
+          </h2>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#141414] p-5">
+              <div class="h-8 w-8 rounded-lg bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xs mb-3">1</div>
+              <h3 class="font-bold text-sm text-[#0A0A0A] dark:text-white">100% Free Forever</h3>
+              <p class="mt-2 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                No trial tricks, daily label quotas, or locked features. We believe fundamental utility software for small businesses should be accessible to everyone.
+              </p>
+            </div>
+
+            <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#141414] p-5">
+              <div class="h-8 w-8 rounded-lg bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xs mb-3">2</div>
+              <h3 class="font-bold text-sm text-[#0A0A0A] dark:text-white">Zero Cloud Uploads</h3>
+              <p class="mt-2 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                We believe buyer PII belongs to you and your customer. By leveraging client-side WebAssembly, no order data ever touches external cloud servers.
+              </p>
+            </div>
+
+            <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#141414] p-5">
+              <div class="h-8 w-8 rounded-lg bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xs mb-3">3</div>
+              <h3 class="font-bold text-sm text-[#0A0A0A] dark:text-white">Blazing Sub-Second Speed</h3>
+              <p class="mt-2 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                Batch processing 200 orders in under 2 seconds. Zero waiting for slow remote server queues or laggy web conversions.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section class="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/70 dark:bg-[#111111] p-6 sm:p-8">
+          <h3 class="text-lg font-bold text-[#0A0A0A] dark:text-white mb-2">
+            The Modern WebAssembly Stack
+          </h3>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+            SmartLabelCrop is proudly built with bleeding-edge web standards:
+          </p>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
+            <div class="rounded-lg bg-white dark:bg-[#1A1A1A] p-3 border border-neutral-200 dark:border-neutral-800">
+              <strong class="text-black dark:text-white block">Astro v7</strong>
+              <span class="text-neutral-500">Ultra-fast static core</span>
+            </div>
+            <div class="rounded-lg bg-white dark:bg-[#1A1A1A] p-3 border border-neutral-200 dark:border-neutral-800">
+              <strong class="text-black dark:text-white block">pdf-lib WASM</strong>
+              <span class="text-neutral-500">Pure vector manipulation</span>
+            </div>
+            <div class="rounded-lg bg-white dark:bg-[#1A1A1A] p-3 border border-neutral-200 dark:border-neutral-800">
+              <strong class="text-black dark:text-white block">Dexie.js</strong>
+              <span class="text-neutral-500">Local IndexedDB memory</span>
+            </div>
+            <div class="rounded-lg bg-white dark:bg-[#1A1A1A] p-3 border border-neutral-200 dark:border-neutral-800">
+              <strong class="text-black dark:text-white block">Tailwind CSS v4</strong>
+              <span class="text-neutral-500">High contrast dub styling</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Action Footer -->
+      <div class="mt-14 pt-8 border-t border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a href="/" class="text-xs font-semibold text-[#EA580C] hover:underline flex items-center gap-1.5">
+          &larr; Try SmartLabelCrop on your orders today
+        </a>
+        <a href="/contact" class="text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors">
+          Have an idea or feature request? Contact us &rarr;
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <FooterDirectory />
+</Layout>

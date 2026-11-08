@@ -1,0 +1,66 @@
+---
+// src/pages/404.astro
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import FooterDirectory from '../components/FooterDirectory.astro';
+---
+
+<Layout
+  title="404 - Page Not Found | SmartLabelCrop.in"
+  description="The page you were looking for could not be found. Return to SmartLabelCrop.in to crop Meesho, Flipkart, and Shopsy shipping labels."
+  canonicalUrl="https://smartlabelcrop.in/404"
+>
+  <Navbar />
+
+  <main class="flex-1 flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#0A0A0A] text-center transition-colors">
+    <div class="max-w-md mx-auto space-y-6">
+      
+      <!-- 404 Visual Icon Badge -->
+      <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-orange-50 dark:bg-orange-950/40 border border-orange-200 dark:border-orange-900/60 text-[#EA580C] shadow-sm">
+        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      </div>
+
+      <div class="space-y-2">
+        <div class="font-mono text-xs font-bold uppercase tracking-widest text-[#EA580C]">
+          ERROR 404 &bull; PAGE NOT FOUND
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+          Looks like this parcel went missing
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-body leading-relaxed">
+          The link you followed may be broken or the page has been moved. Don't worry—your shipping labels are safe.
+        </p>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+        <a
+          href="/"
+          class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg bg-[#0A0A0A] dark:bg-white px-5 py-2.5 text-xs font-bold text-white dark:text-[#0A0A0A] hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors shadow-2xs"
+        >
+          <svg class="mr-2 h-4 w-4 text-[#EA580C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          Return to Cropper Tool
+        </a>
+
+        <a
+          href="/meesho-label-cropper"
+          class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 px-4 py-2.5 text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+        >
+          Meesho Cropper
+        </a>
+      </div>
+
+      <!-- Helpful Quick Links -->
+      <div class="pt-6 border-t border-neutral-200 dark:border-neutral-800 text-xs text-neutral-500 dark:text-neutral-400">
+        Need assistance? <a href="/contact" class="text-[#EA580C] hover:underline font-semibold">Contact Seller Support</a>
+      </div>
+
+    </div>
+  </main>
+
+  <FooterDirectory />
+</Layout>

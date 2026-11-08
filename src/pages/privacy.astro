@@ -1,0 +1,156 @@
+---
+// src/pages/privacy.astro
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import FooterDirectory from '../components/FooterDirectory.astro';
+
+const privacyFaqs = [
+  {
+    question: "Do you store or upload our customer order PDF files?",
+    answer: "No. Never. SmartLabelCrop.in runs 100% client-side via WebAssembly inside your browser. Your PDF files, customer phone numbers, delivery addresses, and GSTIN numbers are never uploaded to any remote server or third-party database."
+  },
+  {
+    question: "Is SmartLabelCrop compliant with India's DPDP Act 2023?",
+    answer: "Yes. Because zero Personal Identifiable Information (PII) is transferred or stored on external infrastructure, SmartLabelCrop adheres fully to the principles of data minimization and purpose limitation under the Digital Personal Data Protection Act 2023."
+  },
+  {
+    question: "What is stored in my browser's IndexedDB?",
+    answer: "Only non-PII operational metadata—specifically hashed AWB numbers for 30-day duplicate print detection and optional SKU rack mappings—is saved locally on your device via Dexie.js. You can wipe this data anytime using the Clear Batch button or browser settings."
+  }
+];
+---
+
+<Layout
+  title="Privacy Policy | SmartLabelCrop.in - 100% Client-Side Data Protection"
+  description="Learn about SmartLabelCrop's zero-upload privacy architecture. 100% Client-side WebAssembly processing fully compliant with India's DPDP Act 2023."
+  canonicalUrl="https://smartlabelcrop.in/privacy"
+  keywords="smartlabelcrop privacy policy, dpdp act compliant label cropper, private meesho label crop, client side wasm pdf privacy"
+  faqItems={privacyFaqs}
+>
+  <Navbar />
+  
+  <main class="flex-1 bg-white dark:bg-[#0A0A0A] text-neutral-800 dark:text-neutral-200 transition-colors">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400 mb-6 font-mono">
+        <a href="/" class="hover:text-black dark:hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-[#EA580C] font-semibold">Privacy Policy</span>
+      </nav>
+
+      <!-- Page Header -->
+      <header class="mb-12 border-b border-neutral-200 dark:border-neutral-800 pb-8">
+        <div class="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50 dark:bg-emerald-950/30 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300 mb-4">
+          <span class="flex h-2 w-2 rounded-full bg-emerald-500"></span>
+          DPDP Act 2023 Compliant • Zero Cloud Data Retention
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+          Privacy Policy
+        </h1>
+        <p class="mt-3 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-mono">
+          Last Updated: November 2026 &bull; Effective Immediately
+        </p>
+      </header>
+
+      <!-- Policy Body -->
+      <div class="prose prose-neutral dark:prose-invert max-w-none space-y-8 text-sm sm:text-base leading-relaxed">
+        
+        <div class="rounded-xl border border-emerald-300 dark:border-emerald-800/80 bg-emerald-50/60 dark:bg-emerald-950/20 p-5 not-prose">
+          <h2 class="text-sm font-bold text-emerald-900 dark:text-emerald-200 flex items-center gap-2">
+            <svg class="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd" />
+            </svg>
+            Our Core Privacy Guarantee to Indian Merchants
+          </h2>
+          <p class="mt-2 text-xs sm:text-sm text-emerald-950 dark:text-emerald-300/90 leading-relaxed font-body">
+            SmartLabelCrop.in is engineered on a strict <strong>Zero-Knowledge Client-Side Architecture</strong>. All document processing—including PDF parsing, vector resizing, SKU extraction, and courier sorting—executes entirely within your local browser tab via WebAssembly. <strong>No customer shipping labels, buyer addresses, phone numbers, order amounts, or GSTINs ever leave your device.</strong>
+          </p>
+        </div>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-bold text-[#0A0A0A] dark:text-white font-display">
+            1. Information We Do NOT Collect
+          </h2>
+          <p>
+            When using SmartLabelCrop.in to crop shipping labels or generate warehouse picklists, we do not receive, store, transmit, or inspect any of the following:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-neutral-600 dark:text-neutral-400">
+            <li>Customer Personally Identifiable Information (Buyer Name, Delivery Address, Contact Number, PIN Code).</li>
+            <li>Marketplace financial records (Tax Invoices, Item Pricing, Discount Codes, Declared Values, GST Breakdown).</li>
+            <li>Supplier credentials or access tokens (No passwords or seller account logins are ever requested).</li>
+            <li>Original or cropped PDF documents and Excel order files.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-bold text-[#0A0A0A] dark:text-white font-display">
+            2. Local Browser Storage (IndexedDB & Dexie.js)
+          </h2>
+          <p>
+            To provide critical operational safeguards such as preventing duplicate printings of shipping parcels, SmartLabelCrop stores minimal operational tokens strictly inside your browser's local sandbox:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-neutral-600 dark:text-neutral-400">
+            <li><strong>30-Day Duplicate AWB Memory:</strong> Local non-PII cryptographic hashes of tracking AWBs to alert you if an identical parcel was already printed within the past 30 days.</li>
+            <li><strong>SKU Rack / Bin Mapping:</strong> If you upload a custom warehouse SKU-to-Rack CSV, the mapping pairs are stored locally on your machine for future batch printings.</li>
+            <li><strong>UI Theme Preference:</strong> Stores your chosen display mode (Light or Dark) in <code>localStorage</code>.</li>
+          </ul>
+          <p>
+            This data never synchronizes with any remote server and can be purged immediately by clicking "Clear Batch" or clearing your browser cookies and site storage.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-bold text-[#0A0A0A] dark:text-white font-display">
+            3. Compliance with the Digital Personal Data Protection (DPDP) Act 2023
+          </h2>
+          <p>
+            The DPDP Act 2023 sets stringent safeguards for personal data in the Republic of India. Because SmartLabelCrop.in operates on a zero-transmission model, we act neither as a Data Fiduciary nor as a Data Processor for buyer PII under the Act. Merchants retain 100% sovereign custody and control over their customer data at all times.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-bold text-[#0A0A0A] dark:text-white font-display">
+            4. Web Analytics and Technical Telemetry
+          </h2>
+          <p>
+            To monitor website stability and performance, we may collect anonymous, aggregated technical metrics that cannot identify individual users or merchants:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-neutral-600 dark:text-neutral-400">
+            <li>Standard server request logs (Browser type, operating system version, referring URL).</li>
+            <li>Aggregated page visit counts and anonymous performance metrics.</li>
+            <li>No invasive third-party cross-site advertising trackers or tracking pixels are utilized.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-bold text-[#0A0A0A] dark:text-white font-display">
+            5. Contact Information
+          </h2>
+          <p>
+            For any privacy inquiries, data protection questions, or technical verification requests, please contact our Data Governance desk:
+          </p>
+          <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-[#141414] p-4 text-xs sm:text-sm font-mono space-y-1">
+            <div><strong>Email:</strong> privacy@smartlabelcrop.in</div>
+            <div><strong>Entity:</strong> SmartLabelCrop India</div>
+            <div><strong>Response Time:</strong> Within 24-48 business hours</div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Quick Back link -->
+      <div class="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
+        <a href="/" class="text-xs font-semibold text-[#EA580C] hover:underline flex items-center gap-1.5">
+          &larr; Back to Free Label Cropper
+        </a>
+        <a href="/terms" class="text-xs text-neutral-500 hover:text-black dark:hover:text-white transition-colors">
+          View Terms & Conditions &rarr;
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <FooterDirectory />
+</Layout>

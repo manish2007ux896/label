@@ -1,0 +1,180 @@
+---
+// src/components/SeoContentSection.astro
+---
+
+<section id="about-tool" class="py-16 sm:py-24 bg-white dark:bg-[#0A0A0A] border-b border-border dark:border-neutral-800 transition-colors">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header Badge & Title -->
+    <div class="mb-10 text-center sm:text-left">
+      <div class="inline-flex items-center gap-2 mb-3">
+        <span class="h-2 w-2 rounded-[2px] bg-[#EA580C]"></span>
+        <span class="text-xs font-semibold uppercase tracking-wider text-[#525252] dark:text-neutral-400">
+          Complete Dispatch & Packing Guide
+        </span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+        The Ultimate Guide to Meesho & Flipkart 4×6 Thermal Label Cropping
+      </h2>
+      <p class="mt-3 text-sm sm:text-base text-[#525252] dark:text-neutral-400 font-body leading-relaxed">
+        How Indian e-commerce merchants in Surat, Jaipur, Tirupur, and Delhi NCR eliminate packing errors, rescue hidden SKUs, and accelerate courier handovers.
+      </p>
+    </div>
+
+    <!-- Longform SEO Copy Article Container -->
+    <article class="prose prose-neutral dark:prose-invert max-w-none space-y-8 text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-body">
+
+      <!-- Section 1 -->
+      <div class="space-y-3">
+        <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+          1. The E-Commerce Dispatch Bottleneck: Why Indian Sellers Need a Dedicated Meesho Label Cropper
+        </h3>
+        <p>
+          In Indian e-commerce, dispatch speed and order accuracy determine seller profitability. Every day, thousands of suppliers on <strong>Meesho</strong>, <strong>Flipkart</strong>, and <strong>Shopsy</strong> process hundreds of customer orders. When downloading shipping labels from the Meesho Supplier Panel, the platform provides an A4-sized PDF containing the shipping label on top and a customer tax invoice at the bottom.
+        </p>
+        <p>
+          Printing these standard A4 pages on laser printers is expensive and inefficient. Sellers waste excessive paper, burn through toner cartridges, and must manually cut labels with scissors before taping them to packages. This tedious workflow bottlenecks evening dispatches during festive sales and inflates warehouse labor costs.
+        </p>
+        <p>
+          Switching to a 4×6 inch (100×150 mm) thermal roll printer is the industry standard for fast fulfillment. However, feeding standard Meesho or Flipkart A4 PDF invoices into thermal printers without specialized software cuts off buyer addresses, distorts barcodes, and hides vital product details. This is why a purpose-built <strong>meesho label cropper</strong> is essential for every Indian merchant.
+        </p>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="space-y-3">
+        <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+          2. The Hidden SKU Problem: Rescuing Vital Product Data from the Fold Line
+        </h3>
+        <p>
+          A major challenge for textile and fashion sellers in Surat, Jaipur, and Tirupur is variable buyer address lengths. When buyers include multiple street lines and landmarks, the divider line between the delivery address and invoice shifts downwards unpredictably.
+        </p>
+        <p>
+          Generic online cropping tools use static coordinates. When addresses run long, the critical item <strong>SKU</strong>, apparel size (e.g., XS, S, M, L, XL, XXL, 3XL), and color get cut off below the 6-inch thermal roll boundary. Warehouse packing staff are left guessing which garment belongs inside the parcel, leading to wrong-item dispatches and costly customer returns.
+        </p>
+        <p>
+          <strong>SmartLabelCrop.in</strong> solves this with an intelligent dynamic fold-line parser. Built with WebAssembly, our tool detects the address boundary and invoice divider. It extracts the hidden SKU, size, and color, and stamps them in an enlarged, high-contrast 72pt footer at the bottom of the 4×6 thermal sticker so workers verify orders in a single glance.
+        </p>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="space-y-3">
+        <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+          3. Multi-Order Packing Alert: Stopping ₹300 to ₹500 RTO Losses
+        </h3>
+        <p>
+          Multi-quantity orders present serious financial risk. When a buyer purchases two or more units, Meesho prints the quantity inside the invoice table in a tiny 6-point font. In the rush of packing hundreds of polybags before the 6:00 PM courier pickup, warehouse helpers routinely miss this miniature text and pack only a single piece.
+        </p>
+        <div class="rounded-xl border border-orange-200 dark:border-orange-900/60 bg-orange-50/50 dark:bg-orange-950/20 p-4 space-y-2">
+          <p class="font-semibold text-[#EA580C]">The Cost of a Multi-Piece Packing Error:</p>
+          <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
+            <li><strong>Missing Item Claim:</strong> The buyer receives an incomplete parcel and disputes the delivery.</li>
+            <li><strong>Double Logistics Charges:</strong> The seller forfeits forward shipping (~₹150) plus return fees (~₹150).</li>
+            <li><strong>Direct Net Loss:</strong> The merchant suffers a direct loss of <strong>₹300 to ₹500</strong> on what should have been their highest-margin order.</li>
+          </ul>
+        </div>
+        <p>
+          SmartLabelCrop prevents this with an automated <strong>Inverted Black Multi-Order Alert</strong>. Whenever our parser detects quantity &ge; 2, it stamps a bold black banner across the top of the sticker: <code class="font-bold text-[#EA580C] bg-neutral-900 px-2 py-0.5 rounded">[★ MULTI-ORDER: PACK X PCS ★]</code>, ensuring staff verify piece counts before sealing the polybag.
+        </p>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="space-y-3">
+        <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+          4. True Vector Barcodes vs. Blurry Raster PNGs: Zero Scanner Errors on 203 DPI Printers
+        </h3>
+        <p>
+          Many online croppers convert PDF pages into HTML5 Canvas images (PNG or JPEG) and resize the image onto a canvas. While this looks acceptable on computer screens, it causes severe issues on thermal label printers.
+        </p>
+        <p>
+          Standard thermal printers—such as TVS LP-46, TSC TE-244, Zebra ZD230, and Xprinter XP-420B—operate at <strong>203 DPI</strong>. Printing rasterized PNG images introduces blurred edges and inconsistent line spacing. When pickup executives from <strong>Valmo Express</strong>, <strong>Ekart Logistics</strong>, <strong>Delhivery</strong>, or <strong>Shadowfax</strong> scan parcels with laser guns, the barcode fails to read, risking missed courier pickups and SLA violations.
+        </p>
+        <p>
+          SmartLabelCrop preserves 100% native vector embedding via <code>pdf-lib</code>. Code-128 barcode paths remain mathematically defined geometric vectors, guaranteeing razor-sharp black lines that scan instantly on first pass.
+        </p>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="space-y-3">
+        <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+          5. Intelligent Courier Sorting & Sticker #1 Thermal Warehouse Picklist
+        </h3>
+        <p>
+          At 5:30 PM each evening, logistics partners arrive simultaneously at warehouse hubs. Unsorted labels force packing teams to scramble, manually separating Valmo packages from Ekart and Delhivery parcels.
+        </p>
+        <p>
+          Our platform integrates an automated <strong>Apparel-Aware 4-Key Sorter</strong> that structures batches systematically:
+        </p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li><strong>Courier Partner Grouping:</strong> Groups labels by carrier (Valmo Express &rarr; Ekart &rarr; Delhivery &rarr; Shadowfax).</li>
+          <li><strong>SKU Consolidation:</strong> Collects identical catalog items together for continuous assembly packing.</li>
+          <li><strong>Apparel Size Hierarchy:</strong> Arranges garment sizes systematically from XS to 3XL.</li>
+          <li><strong>Sequential Order ID:</strong> Maintains clean chronological tracking for manifest audits.</li>
+        </ul>
+        <p>
+          Additionally, SmartLabelCrop prints <strong>Sticker #1: A 4×6 Thermal Picklist</strong> on the roll's first label. Warehouse stock pullers can retrieve exact shelf counts before packaging begins, while the summary tally guarantees exact handover receipts.
+        </p>
+      </div>
+
+      <!-- Section 6 -->
+      <div class="space-y-3">
+        <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+          6. 100% Client-Side Privacy: Compliant with India's DPDP Act 2023
+        </h3>
+        <p>
+          Uploading customer invoices to remote cloud servers exposes sensitive Personally Identifiable Information (PII), including customer names, phone numbers, addresses, and GSTIN records. India's <strong>Digital Personal Data Protection (DPDP) Act 2023</strong> establishes strict data safety requirements.
+        </p>
+        <p>
+          SmartLabelCrop executes entirely inside your browser using <strong>WebAssembly</strong>. Zero files and zero customer data are transmitted to any cloud backend. Processing operates securely within your browser sandbox, even when working completely offline.
+        </p>
+      </div>
+
+      <!-- Section 7 -->
+      <div class="space-y-3">
+        <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+          7. How to Crop Meesho Shipping Labels in 3 Easy Steps
+        </h3>
+        <p>
+          Using SmartLabelCrop takes less than ten seconds, with no account registration or software downloads:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 not-prose my-4">
+          <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#111111] p-4">
+            <div class="flex h-7 w-7 items-center justify-center rounded-md bg-[#EA580C] text-white font-bold text-xs mb-2">1</div>
+            <h4 class="font-bold text-[#0A0A0A] dark:text-white text-xs">Download Meesho PDF</h4>
+            <p class="mt-1 text-[11px] text-neutral-500 dark:text-neutral-400">
+              In your Meesho Supplier Panel, go to Orders &rarr; Ready to Ship and download your label batch.
+            </p>
+          </div>
+          <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#111111] p-4">
+            <div class="flex h-7 w-7 items-center justify-center rounded-md bg-[#EA580C] text-white font-bold text-xs mb-2">2</div>
+            <h4 class="font-bold text-[#0A0A0A] dark:text-white text-xs">Drag & Drop Here</h4>
+            <p class="mt-1 text-[11px] text-neutral-500 dark:text-neutral-400">
+              Drop the PDF into SmartLabelCrop. The WebAssembly engine formats your labels in under 2 seconds.
+            </p>
+          </div>
+          <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#111111] p-4">
+            <div class="flex h-7 w-7 items-center justify-center rounded-md bg-[#EA580C] text-white font-bold text-xs mb-2">3</div>
+            <h4 class="font-bold text-[#0A0A0A] dark:text-white text-xs">Print Clean 4×6 Labels</h4>
+            <p class="mt-1 text-[11px] text-neutral-500 dark:text-neutral-400">
+              Click "Print Direct" or "Download PDF" for clean, scan-ready thermal stickers.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- Bottom CTA Link back to workspace -->
+    <div class="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800 text-center">
+      <a
+        href="#cropper"
+        class="inline-flex items-center justify-center rounded-md bg-[#0A0A0A] dark:bg-white px-6 py-3 text-xs font-bold text-white dark:text-[#0A0A0A] shadow-sm hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors"
+      >
+        <svg class="mr-2 h-4 w-4 text-[#EA580C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+        </svg>
+        Crop Your Meesho & Flipkart Labels Now (Free)
+      </a>
+    </div>
+
+  </div>
+</section>

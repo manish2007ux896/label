@@ -1,5 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
+// src/pages/index.astro
+import Layout, { defaultFaqs } from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import HeroStage from '../components/HeroStage.astro';
 import CropperWorkspace from '../components/CropperWorkspace.astro';
@@ -7,12 +8,17 @@ import MultiOrderAlertSection from '../components/MultiOrderAlertSection.astro';
 import PrinterSetupGuide from '../components/PrinterSetupGuide.astro';
 import PrivacyGuaranteeSection from '../components/PrivacyGuaranteeSection.astro';
 import WhyFreeAndComparison from '../components/WhyFreeAndComparison.astro';
+import SeoContentSection from '../components/SeoContentSection.astro';
+import FaqSection from '../components/FaqSection.astro';
 import FooterDirectory from '../components/FooterDirectory.astro';
 ---
 
 <Layout
-  title="SmartLabelCrop.in | Free Meesho & Flipkart 4x6 Thermal Label Cropper & Multi-Order Rescuer"
-  description="100% private in-browser WebAssembly label cropper for Meesho and Flipkart sellers. Rescues hidden SKUs, stamps inverted black multi-pack alerts, and groups orders by courier."
+  title="Meesho Label Cropper 4x6 Free Online | Cut Invoice & Resize Thermal Labels"
+  description="Free online Meesho & Flipkart 4x6 thermal label cropper. Rescues hidden SKUs from fold lines, stamps inverted black multi-order alerts, and groups orders for Valmo & Ekart courier handover with 100% vector barcode quality."
+  canonicalUrl="https://smartlabelcrop.in"
+  keywords="meesho label cropper, meesho label crop 4x6, flipkart label cropper, meesho shipping label crop online free, thermal label cropper online, meesho label resize for thermal printer, meesho 4x6 label cropper, shopsy label crop 4x6, meesho sku rescuer label cropper, meesho multi order pack alert, valmo courier label cropper, meesho picklist generator 4x6, free shipping label cropper for meesho flipkart"
+  faqItems={defaultFaqs}
 >
   <Navbar />
   <main class="flex-1">
@@ -22,6 +28,8 @@ import FooterDirectory from '../components/FooterDirectory.astro';
     <PrinterSetupGuide />
     <PrivacyGuaranteeSection />
     <WhyFreeAndComparison />
+    <SeoContentSection />
+    <FaqSection />
   </main>
   <FooterDirectory />
 </Layout>
