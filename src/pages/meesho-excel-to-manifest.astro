@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import CropperWorkspace from '../components/CropperWorkspace.astro';
 import PrinterSetupGuide from '../components/PrinterSetupGuide.astro';
+import PrivacyGuaranteeSection from '../components/PrivacyGuaranteeSection.astro';
 import WhyFreeAndComparison from '../components/WhyFreeAndComparison.astro';
 import FooterDirectory from '../components/FooterDirectory.astro';
 
@@ -38,7 +39,7 @@ const manifestFaqs = [
   
   <main class="flex-1">
     <!-- Tailored Manifest Hero Header -->
-    <section class="pt-12 pb-6 bg-gradient-to-b from-neutral-100/70 via-white to-white dark:from-neutral-900/40 dark:via-[#0A0A0A] dark:to-[#0A0A0A] border-b border-neutral-200 dark:border-neutral-800">
+    <section class="pt-16 sm:pt-20 pb-8 sm:pb-12 bg-gradient-to-b from-neutral-100/70 via-white to-white dark:from-neutral-900/40 dark:via-[#0A0A0A] dark:to-[#0A0A0A] border-b border-neutral-200 dark:border-neutral-800">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
         <div class="inline-flex items-center gap-2 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 px-3 py-1 text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-4">
           📥 1-CLICK EXCEL DISPATCH MANIFEST
@@ -97,6 +98,7 @@ const manifestFaqs = [
     </section>
 
     <PrinterSetupGuide />
+    <PrivacyGuaranteeSection />
     <WhyFreeAndComparison />
   </main>
 

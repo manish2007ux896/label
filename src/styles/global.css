@@ -42,6 +42,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
   body {
     background-color: var(--color-canvas);
     color: var(--color-ink);
