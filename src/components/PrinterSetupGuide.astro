@@ -1,0 +1,155 @@
+---
+// src/components/PrinterSetupGuide.astro
+---
+
+<section id="printers" class="py-16 sm:py-20 bg-[#FAFAFA] dark:bg-[#0E0E0E] border-b border-border dark:border-neutral-800 transition-colors">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="inline-flex items-center gap-2 mb-2">
+        <span class="h-2 w-2 rounded-[2px] bg-[#EA580C]"></span>
+        <span class="text-xs font-semibold uppercase tracking-wider text-[#525252] dark:text-neutral-400">Hardware Calibration</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+        Optimized for India's Top Thermal Printers
+      </h2>
+      <p class="mt-3 text-sm sm:text-base text-[#525252] dark:text-neutral-400 font-body">
+        Say goodbye to skipped blank labels, faded barcodes, and courier pickup rejections. SmartLabelCrop outputs exact 288×432 pt (4×6 inch) vector paths.
+      </p>
+    </div>
+
+    <!-- 4 Printer Model Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      <!-- TVS LP-46 -->
+      <div class="rounded-xl border border-border dark:border-neutral-800 bg-white dark:bg-[#141414] p-5 shadow-2xs hover:border-black dark:hover:border-neutral-600 transition-colors">
+        <div class="flex items-center justify-between mb-3">
+          <span class="font-bold text-sm text-[#0A0A0A] dark:text-white">TVS LP-46 / 46 Neo</span>
+          <span class="rounded bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 text-[10px] font-mono text-neutral-600 dark:text-neutral-300">203 DPI</span>
+        </div>
+        <div class="space-y-2 text-xs text-neutral-600 dark:text-neutral-400 font-body">
+          <div class="flex justify-between border-b border-neutral-100 dark:border-neutral-800/80 pb-1">
+            <span class="text-neutral-400">Driver:</span>
+            <span class="font-medium text-[#0A0A0A] dark:text-white">Seagull Bartender</span>
+          </div>
+          <div class="flex justify-between border-b border-neutral-100 dark:border-neutral-800/80 pb-1">
+            <span class="text-neutral-400">Darkness:</span>
+            <span class="font-mono font-bold text-[#EA580C]">11 - 12</span>
+          </div>
+          <div class="flex justify-between border-b border-neutral-100 dark:border-neutral-800/80 pb-1">
+            <span class="text-neutral-400">Print Speed:</span>
+            <span class="font-mono text-[#0A0A0A] dark:text-white">3.0 in/sec</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-neutral-400">Sensor:</span>
+            <span class="font-medium text-[#0A0A0A] dark:text-white">Transmissive (Gap)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TSC TE-244 -->
+      <div class="rounded-xl border border-border dark:border-neutral-800 bg-white dark:bg-[#141414] p-5 shadow-2xs hover:border-black dark:hover:border-neutral-600 transition-colors">
+        <div class="flex items-center justify-between mb-3">
+          <span class="font-bold text-sm text-[#0A0A0A] dark:text-white">TSC TE-244 / 200</span>
+          <span class="rounded bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 text-[10px] font-mono text-neutral-600 dark:text-neutral-300">203 DPI</span>
+        </div>
+        <div class="space-y-2 text-xs text-neutral-600 dark:text-neutral-400 font-body">
+          <div class="flex justify-between border-b border-neutral-100 dark:border-neutral-800/80 pb-1">
+            <span class="text-neutral-400">Driver:</span>
+            <span class="font-medium text-[#0A0A0A] dark:text-white">TSC Official / Seagull</span>
+          </div>
+          <div class="flex justify-between border-b border-neutral-100 dark:border-neutral-800/80 pb-1">
+            <span class="text-neutral-400">Darkness:</span>
+            <span class="font-mono font-bold text-[#EA580C]">10 - 11</span>
+          </div>
+          <div class="flex justify-between border-b border-neutral-100 dark:border-neutral-800/80 pb-1">
+            <span class="text-neutral-400">Print Speed:</span>
+            <span class="font-mono text-[#0A0A0A] dark:text-white">4.0 in/sec</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-neutral-400">Sensor:</span>
+            <span class="font-medium text-[#0A0A0A] dark:text-white">Die-Cut Gap</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zebra ZD230 -->
+      <div class="rounded-xl border border-border dark:border-neutral-800 bg-white dark:bg-[#141414] p-5 shadow-2xs hover:border-black dark:hover:border-neutral-600 transition-colors">
+        <div class="flex items-center justify-between mb-3">
+          <span class="font-bold text-sm text-[#0A0A0A] dark:text-white">Zebra ZD230 / GT800</span>
+          <span class="rounded bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 text-[10px] font-mono text-neutral-600 dark:text-neutral-300">203 DPI</span>
+        </div>
+        <div class="space-y-2 text-xs text-neutral-600 dark:text-neutral-400 font-body">
+          <div class="flex justify-between border-b border-neutral-100 dark:border-neutral-800/80 pb-1">
+            <span class="text-neutral-400">Driver:</span>
+            <span class="font-medium text-[#0A0A0A] dark:text-white">ZDesigner Windows</span>
+          </div>
+          <div class="flex justify-between border-b border-neutral-100 dark:border-neutral-800/80 pb-1">
+            <span class="text-neutral-400">Darkness:</span>
+            <span class="font-mono font-bold text-[#EA580C]">12 - 14</span>
+          </div>
+          <div class="flex justify-between border-b border-neutral-100 dark:border-neutral-800/80 pb-1">
+            <span class="text-neutral-400">Print Speed:</span>
+            <span class="font-mono text-[#0A0A0A] dark:text-white">3.5 in/sec</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-neutral-400">Media Type:</span>
+            <span class="font-medium text-[#0A0A0A] dark:text-white">Thermal Direct</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Xprinter XP-420B -->
+      <div class="rounded-xl border border-border dark:border-neutral-800 bg-white dark:bg-[#141414] p-5 shadow-2xs hover:border-black dark:hover:border-neutral-600 transition-colors">
+        <div class="flex items-center justify-between mb-3">
+          <span class="font-bold text-sm text-[#0A0A0A] dark:text-white">Xprinter XP-420B / USB</span>
+          <span class="rounded bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 text-[10px] font-mono text-neutral-600 dark:text-neutral-300">203 DPI</span>
+        </div>
+        <div class="space-y-2 text-xs text-neutral-600 dark:text-neutral-400 font-body">
+          <div class="flex justify-between border-b border-neutral-100 dark:border-neutral-800/80 pb-1">
+            <span class="text-neutral-400">Driver:</span>
+            <span class="font-medium text-[#0A0A0A] dark:text-white">XP-420B Seagull</span>
+          </div>
+          <div class="flex justify-between border-b border-neutral-100 dark:border-neutral-800/80 pb-1">
+            <span class="text-neutral-400">Darkness:</span>
+            <span class="font-mono font-bold text-[#EA580C]">10</span>
+          </div>
+          <div class="flex justify-between border-b border-neutral-100 dark:border-neutral-800/80 pb-1">
+            <span class="text-neutral-400">Print Speed:</span>
+            <span class="font-mono text-[#0A0A0A] dark:text-white">127 mm/sec</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-neutral-400">Feed Mode:</span>
+            <span class="font-medium text-[#0A0A0A] dark:text-white">Label with Gap</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Calibration Checklist Box -->
+    <div class="mt-8 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#141414] p-6">
+      <h3 class="text-sm font-bold text-[#0A0A0A] dark:text-white mb-3 flex items-center gap-2">
+        <svg class="h-4 w-4 text-[#EA580C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+        </svg>
+        3-Step Calibration to Stop Skipping Blank Labels
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-[#525252] dark:text-neutral-400 leading-relaxed">
+        <div>
+          <strong class="text-[#0A0A0A] dark:text-white block mb-1">Step 1: Set Custom Paper Size</strong>
+          In Windows Settings &gt; Printers &gt; Preferences, create a new stock size named <code class="font-mono bg-neutral-100 dark:bg-neutral-800 px-1 py-0.5 rounded text-black dark:text-white">4x6_Thermal</code> with Width: <strong class="text-black dark:text-white">100 mm (4.0 in)</strong> and Height: <strong class="text-black dark:text-white">150 mm (6.0 in)</strong>.
+        </div>
+        <div>
+          <strong class="text-[#0A0A0A] dark:text-white block mb-1">Step 2: Calibrate Gap Sensor</strong>
+          Turn off printer. Hold the front feed button while turning power on. Release when the LED blinks red to calibrate the paper gap. The printer feeds 2 labels and stops exactly at the tear bar.
+        </div>
+        <div>
+          <strong class="text-[#0A0A0A] dark:text-white block mb-1">Step 3: Print at 100% Scale</strong>
+          In browser print dialog, always select <strong class="text-black dark:text-white">Fit to Printable Area</strong> or <strong class="text-black dark:text-white">Scale: 100%</strong> with margins set to <strong class="text-black dark:text-white">None</strong>. Never use "Fit to Page" which shrinks barcodes.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

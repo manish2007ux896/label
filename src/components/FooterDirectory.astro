@@ -1,0 +1,87 @@
+---
+// src/components/FooterDirectory.astro
+---
+
+<footer class="bg-white dark:bg-[#0A0A0A] border-t border-border dark:border-neutral-800 pt-16 pb-12 text-xs text-[#525252] dark:text-neutral-400 transition-colors">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Directory Columns -->
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+      
+      <!-- Brand & Status Pill -->
+      <div class="col-span-2 space-y-4">
+        <div class="flex items-center gap-2">
+          <div class="flex h-5 w-5 items-center justify-center rounded-[3px] bg-[#0A0A0A] dark:bg-white text-white dark:text-[#0A0A0A]">
+            <div class="h-1.5 w-1.5 rounded-[1px] bg-[#EA580C]"></div>
+          </div>
+          <span class="text-sm font-bold tracking-tight text-[#0A0A0A] dark:text-white">
+            SmartLabelCrop<span class="text-[#EA580C]">.in</span>
+          </span>
+        </div>
+
+        <p class="text-xs text-[#737373] dark:text-neutral-400 max-w-sm leading-relaxed">
+          The high-speed WebAssembly label cropper and multi-quantity packing protector for Indian e-commerce merchants on Meesho, Flipkart, and Shopsy.
+        </p>
+
+        <!-- System Status Pill -->
+        <div class="inline-flex items-center gap-2 rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-[#141414] px-3 py-1 text-[11px] font-medium text-neutral-700 dark:text-neutral-300">
+          <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>WASM Engine v2.4 Active &bull; 100% Client-Side</span>
+        </div>
+      </div>
+
+      <!-- Column 1: Marketplaces -->
+      <div>
+        <h4 class="font-semibold text-[#0A0A0A] dark:text-white mb-3">Marketplaces</h4>
+        <ul class="space-y-2">
+          <li><a href="#cropper" class="hover:text-black dark:hover:text-white transition-colors">Meesho Supplier Panel</a></li>
+          <li><a href="#cropper" class="hover:text-black dark:hover:text-white transition-colors">Flipkart Seller Hub</a></li>
+          <li><a href="#cropper" class="hover:text-black dark:hover:text-white transition-colors">Shopsy Wholesale</a></li>
+          <li><a href="#cropper" class="hover:text-black dark:hover:text-white transition-colors">Amazon Easy Ship (4x6)</a></li>
+          <li><a href="#cropper" class="hover:text-black dark:hover:text-white transition-colors">JioMart Digital</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 2: Couriers Supported -->
+      <div>
+        <h4 class="font-semibold text-[#0A0A0A] dark:text-white mb-3">Couriers</h4>
+        <ul class="space-y-2">
+          <li><span class="text-neutral-600 dark:text-neutral-400">Valmo Express</span></li>
+          <li><span class="text-neutral-600 dark:text-neutral-400">Ekart Logistics</span></li>
+          <li><span class="text-neutral-600 dark:text-neutral-400">Delhivery Surface</span></li>
+          <li><span class="text-neutral-600 dark:text-neutral-400">Shadowfax E-Com</span></li>
+          <li><span class="text-neutral-600 dark:text-neutral-400">Xpressbees Express</span></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Seller Hubs & Resources -->
+      <div>
+        <h4 class="font-semibold text-[#0A0A0A] dark:text-white mb-3">Seller Hubs</h4>
+        <ul class="space-y-2">
+          <li><a href="#printers" class="hover:text-black dark:hover:text-white transition-colors">Surat Textile Hub Setup</a></li>
+          <li><a href="#printers" class="hover:text-black dark:hover:text-white transition-colors">Jaipur Kurti Packing SOP</a></li>
+          <li><a href="#printers" class="hover:text-black dark:hover:text-white transition-colors">Tirupur Hosiery Dispatch</a></li>
+          <li><a href="#printers" class="hover:text-black dark:hover:text-white transition-colors">Thermal Printer Calibration</a></li>
+          <li><a href="#privacy" class="hover:text-black dark:hover:text-white transition-colors">100% Offline PWA Mode</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Legal & Certification Row -->
+    <div class="border-t border-neutral-200/80 dark:border-neutral-800/80 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#737373] dark:text-neutral-500">
+      <div>
+        &copy; {new Date().getFullYear()} SmartLabelCrop.in. Built with high-performance WebAssembly for Indian merchants.
+      </div>
+      
+      <div class="flex items-center gap-4">
+        <span>DPDP Act 2023 Compliant</span>
+        <span>•</span>
+        <span>Zero Remote PDF Retention</span>
+        <span>•</span>
+        <span>Made with ❤️ in India</span>
+      </div>
+    </div>
+
+  </div>
+</footer>

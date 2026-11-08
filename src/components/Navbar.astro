@@ -1,0 +1,118 @@
+---
+// src/components/Navbar.astro
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-border bg-white/90 dark:bg-[#0A0A0A]/90 backdrop-blur-md transition-colors">
+  <div class="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <!-- Brand -->
+    <div class="flex items-center gap-6">
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="flex h-6 w-6 items-center justify-center rounded-[4px] bg-[#0A0A0A] dark:bg-white text-white dark:text-[#0A0A0A]">
+          <div class="h-2 w-2 rounded-[1px] bg-[#EA580C]"></div>
+        </div>
+        <span class="text-base font-bold tracking-tight text-[#0A0A0A] dark:text-white">
+          SmartLabelCrop<span class="text-[#EA580C]">.in</span>
+        </span>
+      </a>
+
+      <!-- Quick Platform Pills -->
+      <nav class="hidden md:flex items-center gap-1 text-xs font-medium text-[#525252] dark:text-neutral-400">
+        <a href="#cropper" class="px-2.5 py-1 rounded-md hover:text-[#0A0A0A] dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+          Meesho
+        </a>
+        <a href="#cropper" class="px-2.5 py-1 rounded-md hover:text-[#0A0A0A] dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+          Flipkart / Shopsy
+        </a>
+        <a href="#multi-alert" class="px-2.5 py-1 rounded-md hover:text-[#0A0A0A] dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+          Multi-Order Alert
+        </a>
+        <a href="#printers" class="px-2.5 py-1 rounded-md hover:text-[#0A0A0A] dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+          Printer Setup
+        </a>
+        <a href="#privacy" class="px-2.5 py-1 rounded-md hover:text-[#0A0A0A] dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+          100% Client-Side
+        </a>
+      </nav>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-2.5">
+      
+      <!-- Dark / Light Theme Toggle Button -->
+      <button
+        id="theme-toggle-btn"
+        type="button"
+        aria-label="Toggle dark mode"
+        class="inline-flex h-8 w-8 items-center justify-center rounded-md border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
+      >
+        <!-- Sun Icon (visible in dark mode) -->
+        <svg id="sun-icon" class="hidden h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <!-- Moon Icon (visible in light mode) -->
+        <svg id="moon-icon" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+
+      <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-orange-200 dark:border-orange-900/60 bg-orange-50 dark:bg-orange-950/30 text-[11px] font-semibold text-[#EA580C]">
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EA580C] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#EA580C]"></span>
+        </span>
+        60-Day Free Beta
+      </div>
+
+      <button
+        id="nav-sample-btn"
+        class="inline-flex items-center justify-center rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 px-3 py-1.5 text-xs font-medium text-[#0A0A0A] dark:text-neutral-200 shadow-xs hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all cursor-pointer"
+      >
+        <svg class="mr-1.5 h-3.5 w-3.5 text-[#EA580C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+        Try Sample
+      </button>
+
+      <a
+        href="#cropper"
+        class="inline-flex items-center justify-center rounded-md bg-[#0A0A0A] dark:bg-white px-3.5 py-1.5 text-xs font-medium text-white dark:text-[#0A0A0A] shadow-xs hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all cursor-pointer"
+      >
+        Crop Labels Free
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const themeToggleBtn = document.getElementById('theme-toggle-btn');
+  const sunIcon = document.getElementById('sun-icon');
+  const moonIcon = document.getElementById('moon-icon');
+
+  function syncThemeIcons() {
+    const isDark = document.documentElement.classList.contains('dark');
+    if (isDark) {
+      sunIcon?.classList.remove('hidden');
+      moonIcon?.classList.add('hidden');
+    } else {
+      sunIcon?.classList.add('hidden');
+      moonIcon?.classList.remove('hidden');
+    }
+  }
+
+  // Initial icon sync
+  syncThemeIcons();
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      syncThemeIcons();
+    });
+  }
+</script>

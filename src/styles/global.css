@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-canvas: var(--bg-canvas);
+  --color-canvas-soft: var(--bg-canvas-soft);
+  --color-ink: var(--text-ink);
+  --color-ink-strong: var(--text-ink-strong);
+  --color-ink-soft: var(--text-ink-soft);
+  --color-muted-ink: #737373;
+  --color-status: #a3a3a3;
+  --color-border: var(--border-color);
+  --color-border-strong: #a3a3a3;
+  --color-surface-dark: #171717;
+  --color-surface-deep: #0a0a0a;
+  --color-action: #000000;
+  --color-accent: #ea580c;
+  --color-accent-deep: #7c2d12;
+
+  --font-display: 'Plus Jakarta Sans', Satoshi, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+:root {
+  --bg-canvas: #ffffff;
+  --bg-canvas-soft: #fafafa;
+  --text-ink: #0a0a0a;
+  --text-ink-strong: #000000;
+  --text-ink-soft: #525252;
+  --border-color: #e5e7eb;
+}
+
+.dark {
+  --bg-canvas: #0a0a0a;
+  --bg-canvas-soft: #141414;
+  --text-ink: #ededed;
+  --text-ink-strong: #ffffff;
+  --text-ink-soft: #a3a3a3;
+  --border-color: #262626;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+}

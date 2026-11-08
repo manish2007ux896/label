@@ -1,0 +1,77 @@
+---
+// src/components/HeroStage.astro
+---
+
+<section class="relative overflow-hidden bg-[#0A0A0A] text-white pt-16 pb-20 sm:pt-20 sm:pb-24 border-b border-neutral-800">
+  <!-- Subtle warm ambient lighting glow -->
+  <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
+    <div class="h-[360px] w-[600px] rounded-full bg-[#EA580C]/10 blur-[120px]"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+    <!-- Signal Accent Pill -->
+    <div class="inline-flex items-center gap-2 rounded-full border border-neutral-700 bg-neutral-900/80 px-3 py-1 text-xs font-medium text-neutral-300 mb-6 backdrop-blur-xs">
+      <span class="flex h-2 w-2 rounded-full bg-[#EA580C]"></span>
+      <span class="text-white font-semibold">★ MULTI-ORDER RESCUE & 4×6 CROP</span>
+      <span class="text-neutral-500">•</span>
+      <span class="text-neutral-300">Meesho • Flipkart • Shopsy</span>
+    </div>
+
+    <!-- Centered Hero Display Headline -->
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08] font-display">
+      Zero Missing Items.<br class="hidden sm:inline" />
+      Clean <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-100 to-neutral-400">4×6 Thermal Labels</span> in 1 Click.
+    </h1>
+
+    <!-- Restrained Body Subhead -->
+    <p class="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-neutral-400 leading-relaxed font-body">
+      Never lose ₹300 on a missed multi-quantity pack again. Rescues hidden SKUs from the Meesho fold line, stamps bold inverted black pack alerts, and groups labels by courier handover.
+    </p>
+
+    <!-- CTAs -->
+    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a
+        href="#cropper"
+        class="w-full sm:w-auto inline-flex items-center justify-center rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-[#0A0A0A] hover:bg-neutral-100 transition-colors shadow-sm"
+      >
+        <svg class="mr-2 h-4 w-4 text-[#0A0A0A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+        </svg>
+        Upload Seller PDF (Free)
+      </a>
+
+      <button
+        id="hero-sample-btn"
+        class="w-full sm:w-auto inline-flex items-center justify-center rounded-md border border-neutral-700 bg-neutral-900/90 px-5 py-2.5 text-sm font-medium text-neutral-200 hover:bg-neutral-800 hover:border-neutral-600 transition-colors cursor-pointer"
+      >
+        <svg class="mr-2 h-4 w-4 text-[#EA580C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Test 15-Order Sample Batch
+      </button>
+    </div>
+
+    <!-- Trust & Technical Proof Row -->
+    <div class="mt-12 pt-8 border-t border-neutral-800/80 flex flex-wrap items-center justify-center gap-y-3 gap-x-6 text-xs text-neutral-400">
+      <div class="flex items-center gap-1.5">
+        <svg class="h-4 w-4 text-[#EA580C]" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+        <span><strong class="text-white">100% Client-Side WebAssembly:</strong> Zero PDF uploads</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <svg class="h-4 w-4 text-[#EA580C]" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+        <span><strong class="text-white">True Vector Barcodes:</strong> No pixelated blur</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <svg class="h-4 w-4 text-[#EA580C]" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+        <span><strong class="text-white">30-Day Duplicate AWB Guard:</strong> Prevents double dispatches</span>
+      </div>
+    </div>
+  </div>
+</section>

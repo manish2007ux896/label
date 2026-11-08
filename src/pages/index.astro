@@ -1,11 +1,27 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Navbar from '../components/Navbar.astro';
+import HeroStage from '../components/HeroStage.astro';
+import CropperWorkspace from '../components/CropperWorkspace.astro';
+import MultiOrderAlertSection from '../components/MultiOrderAlertSection.astro';
+import PrinterSetupGuide from '../components/PrinterSetupGuide.astro';
+import PrivacyGuaranteeSection from '../components/PrivacyGuaranteeSection.astro';
+import PricingTiers from '../components/PricingTiers.astro';
+import FooterDirectory from '../components/FooterDirectory.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="SmartLabelCrop.in | Free Meesho & Flipkart 4x6 Thermal Label Cropper & Multi-Order Rescuer"
+  description="100% private in-browser WebAssembly label cropper for Meesho and Flipkart sellers. Rescues hidden SKUs, stamps inverted black multi-pack alerts, and groups orders by courier."
+>
+  <Navbar />
+  <main class="flex-1">
+    <HeroStage />
+    <CropperWorkspace />
+    <MultiOrderAlertSection />
+    <PrinterSetupGuide />
+    <PrivacyGuaranteeSection />
+    <PricingTiers />
+  </main>
+  <FooterDirectory />
 </Layout>

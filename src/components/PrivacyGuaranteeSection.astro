@@ -1,0 +1,112 @@
+---
+// src/components/PrivacyGuaranteeSection.astro
+---
+
+<section id="privacy" class="py-16 sm:py-20 bg-white dark:bg-[#0A0A0A] border-b border-border dark:border-neutral-800 transition-colors">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Visual Architecture Diagram -->
+      <div class="lg:col-span-6 order-2 lg:order-1">
+        <div class="rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#111111] p-6 shadow-xs">
+          <div class="text-xs font-mono text-neutral-400 dark:text-neutral-500 mb-4 text-center">
+            BROWSER-ISOLATED EXECUTION BOUNDARY
+          </div>
+
+          <div class="space-y-4 text-xs font-mono">
+            
+            <!-- Safe In-Browser Zone -->
+            <div class="rounded-xl border-2 border-emerald-500/80 bg-white dark:bg-[#161616] p-4 shadow-2xs">
+              <div class="flex items-center justify-between font-bold text-emerald-700 dark:text-emerald-400">
+                <span>✓ YOUR CHROME / EDGE BROWSER TAB</span>
+                <span class="rounded bg-emerald-100 dark:bg-emerald-950/60 px-2 py-0.5 text-[10px] text-emerald-800 dark:text-emerald-300">100% LOCAL</span>
+              </div>
+              
+              <div class="mt-3 grid grid-cols-3 gap-2 text-center text-[10px]">
+                <div class="rounded bg-neutral-50 dark:bg-[#202020] p-2 border border-neutral-200 dark:border-neutral-700">
+                  <div class="font-bold text-black dark:text-white">pdfjs-dist</div>
+                  <div class="text-neutral-500 dark:text-neutral-400">Local Parsing</div>
+                </div>
+                <div class="rounded bg-neutral-50 dark:bg-[#202020] p-2 border border-neutral-200 dark:border-neutral-700">
+                  <div class="font-bold text-black dark:text-white">pdf-lib WASM</div>
+                  <div class="text-neutral-500 dark:text-neutral-400">Vector Embed</div>
+                </div>
+                <div class="rounded bg-neutral-50 dark:bg-[#202020] p-2 border border-neutral-200 dark:border-neutral-700">
+                  <div class="font-bold text-black dark:text-white">Dexie DB</div>
+                  <div class="text-neutral-500 dark:text-neutral-400">Local IndexedDB</div>
+                </div>
+              </div>
+
+              <div class="mt-3 text-[11px] text-neutral-600 dark:text-neutral-400 font-sans">
+                PDF data is read directly into WebAssembly memory buffers. Even if your internet disconnects, batch processing continues uninterrupted.
+              </div>
+            </div>
+
+            <!-- Blocked Remote Network Boundary -->
+            <div class="rounded-xl border border-dashed border-red-300 dark:border-red-900/60 bg-red-50/40 dark:bg-red-950/20 p-4 text-neutral-500 dark:text-neutral-400">
+              <div class="flex items-center justify-between font-bold text-red-700 dark:text-red-400">
+                <span>🚫 CLOUD / EXTERNAL SERVERS</span>
+                <span class="rounded bg-red-100 dark:bg-red-950/60 px-2 py-0.5 text-[10px] text-red-800 dark:text-red-300">ZERO ACCESS</span>
+              </div>
+              <p class="mt-2 text-[11px] font-sans text-neutral-600 dark:text-neutral-400 leading-normal">
+                No buyer names, phone numbers, addresses, order amounts, or GSTINs are ever transmitted to any remote backend. We cannot see your sales data even if we wanted to.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Copy Explanation -->
+      <div class="lg:col-span-6 order-1 lg:order-2 space-y-5">
+        <div class="flex items-center gap-2">
+          <span class="h-2 w-2 rounded-[2px] bg-[#EA580C]"></span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-[#525252] dark:text-neutral-400">Data Security Guarantee</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+          Your Buyer Data Never Leaves Your Device
+        </h2>
+
+        <p class="text-sm sm:text-base text-[#525252] dark:text-neutral-400 leading-relaxed font-body">
+          Most online label crop websites secretly upload your shipping PDFs to their servers to extract customer phone numbers, addresses, and daily sales volume for data brokers or competing seller aggregators.
+        </p>
+
+        <div class="space-y-3 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 font-body">
+          <div class="flex items-start gap-3">
+            <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 font-bold text-xs">✓</span>
+            <div>
+              <strong class="text-[#0A0A0A] dark:text-white">Offline-Capable PWA:</strong> You can load SmartLabelCrop, turn off your Wi-Fi, and process 500 orders without a single error.
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 font-bold text-xs">✓</span>
+            <div>
+              <strong class="text-[#0A0A0A] dark:text-white">DPDP Act 2023 Compliant:</strong> Zero storage of Indian citizen personal identifiable information (PII) on cloud servers.
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 font-bold text-xs">✓</span>
+            <div>
+              <strong class="text-[#0A0A0A] dark:text-white">Encrypted Browser Memory:</strong> IndexedDB history stores only 30-day AWBs locally on your hard disk for double-print protection.
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <a
+            href="#cropper"
+            class="inline-flex items-center gap-1.5 text-xs font-bold text-[#EA580C] hover:text-orange-500 transition-colors"
+          >
+            Test instant local cropping with sample batch &rarr;
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

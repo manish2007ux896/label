@@ -12,6 +12,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.4.7"
+    "@pdf-lib/fontkit": "^1.1.1",
+    "@tailwindcss/vite": "^4.3.5",
+    "astro": "^7.4.7",
+    "dexie": "^4.4.7",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.5.438",
+    "tailwindcss": "^4.3.5"
   }
 }

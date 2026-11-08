@@ -1,0 +1,686 @@
+---
+// src/components/CropperWorkspace.astro
+---
+
+<section id="cropper" class="relative py-12 sm:py-16 bg-white dark:bg-[#0A0A0A] border-b border-border dark:border-neutral-800 transition-colors">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header in Dub.co style -->
+    <div class="mb-8">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="h-2 w-2 rounded-[2px] bg-[#EA580C]"></span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-[#525252] dark:text-neutral-400">Batch Engine</span>
+          </div>
+          <h2 class="mt-1 text-2xl sm:text-3xl font-bold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+            Instant 4×6 Label Cropper & Pack Alert
+          </h2>
+        </div>
+        
+        <div class="flex items-center gap-2">
+          <button
+            id="btn-sample-batch"
+            class="inline-flex items-center gap-1.5 rounded-md border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 px-3.5 py-1.5 text-xs font-semibold text-[#0A0A0A] dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors shadow-2xs cursor-pointer"
+          >
+            <svg class="h-3.5 w-3.5 text-[#EA580C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            Load 15-Order Test Batch
+          </button>
+        </div>
+      </div>
+      <p class="mt-2 text-sm text-[#525252] dark:text-neutral-400 max-w-2xl font-body">
+        Drop your Meesho or Flipkart multi-page PDF invoices below. Everything processes entirely inside your browser via WebAssembly with zero data leaving your machine.
+      </p>
+    </div>
+
+    <!-- Dropzone Area -->
+    <div
+      id="dropzone"
+      class="group relative rounded-xl border-2 border-dashed border-neutral-300 dark:border-neutral-700 bg-[#FAFAFA] dark:bg-[#111111] p-8 sm:p-12 text-center transition-all hover:border-[#0A0A0A] hover:dark:border-white hover:bg-neutral-100/60 hover:dark:bg-neutral-800/40 cursor-pointer"
+    >
+      <input
+        type="file"
+        id="file-input"
+        accept="application/pdf"
+        multiple
+        class="absolute inset-0 h-full w-full opacity-0 cursor-pointer"
+      />
+      
+      <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#1A1A1A] shadow-2xs group-hover:scale-105 transition-transform">
+        <svg class="h-6 w-6 text-[#0A0A0A] dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      </div>
+
+      <h3 class="mt-4 text-base font-semibold text-[#0A0A0A] dark:text-white">
+        Drop Meesho or Flipkart PDF labels here
+      </h3>
+      <p class="mt-1 text-xs text-[#525252] dark:text-neutral-400">
+        Supports single or multiple PDF files up to 500 orders per batch.
+      </p>
+
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
+        <span class="inline-flex items-center rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#181818] px-2.5 py-1 text-[11px] font-medium text-neutral-600 dark:text-neutral-400 shadow-2xs">
+          📄 Meesho A4 Invoices
+        </span>
+        <span class="inline-flex items-center rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#181818] px-2.5 py-1 text-[11px] font-medium text-neutral-600 dark:text-neutral-400 shadow-2xs">
+          📦 Flipkart & Shopsy
+        </span>
+        <span class="inline-flex items-center rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#181818] px-2.5 py-1 text-[11px] font-medium text-neutral-600 dark:text-neutral-400 shadow-2xs">
+          ⚡ Valmo / Delhivery / Ekart
+        </span>
+      </div>
+    </div>
+
+    <!-- Processing Progress Indicator -->
+    <div id="processing-indicator" class="hidden mt-6 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#111111] p-4 shadow-xs">
+      <div class="flex items-center justify-between text-xs font-medium text-[#0A0A0A] dark:text-white mb-2">
+        <span id="progress-stage" class="flex items-center gap-2">
+          <svg class="animate-spin h-3.5 w-3.5 text-[#EA580C]" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Processing labels via WebAssembly...
+        </span>
+        <span id="progress-pct" class="font-mono font-semibold">0%</span>
+      </div>
+      <div class="h-1.5 w-full overflow-hidden rounded-full bg-neutral-100 dark:bg-neutral-800">
+        <div id="progress-bar" class="h-full bg-[#EA580C] transition-all duration-300" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Risk Diagnostics HUD (Shown after loading labels) -->
+    <div id="diagnostics-panel" class="hidden mt-8">
+      <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:gap-4">
+        
+        <!-- Total Orders Card -->
+        <div class="rounded-xl border border-border dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#111111] p-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium text-[#525252] dark:text-neutral-400">Total Orders</span>
+            <span class="h-2 w-2 rounded-full bg-neutral-400"></span>
+          </div>
+          <div class="mt-2 flex items-baseline gap-2">
+            <span id="stat-total" class="font-mono text-2xl sm:text-3xl font-bold text-[#0A0A0A] dark:text-white">0</span>
+            <span class="text-xs text-neutral-500 dark:text-neutral-400 font-medium">labels</span>
+          </div>
+          <p class="mt-1 text-[11px] text-[#525252] dark:text-neutral-500">Processed in browser</p>
+        </div>
+
+        <!-- Multi-Order Risk Alert Card -->
+        <div class="rounded-xl border border-orange-200 dark:border-orange-900/60 bg-orange-50/70 dark:bg-orange-950/25 p-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold text-[#EA580C]">Multi-Piece Risk</span>
+            <span class="flex h-2 w-2 rounded-full bg-[#EA580C] animate-pulse"></span>
+          </div>
+          <div class="mt-2 flex items-baseline gap-2">
+            <span id="stat-multi" class="font-mono text-2xl sm:text-3xl font-bold text-[#EA580C]">0</span>
+            <span class="text-xs font-semibold text-[#EA580C]">qty ≥ 2</span>
+          </div>
+          <p class="mt-1 text-[11px] text-orange-950 dark:text-orange-200/80 font-medium">Inverted black box stamped</p>
+        </div>
+
+        <!-- 30-Day Duplicate Blocker Card -->
+        <div class="rounded-xl border border-border dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#111111] p-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium text-[#525252] dark:text-neutral-400">Duplicate AWBs</span>
+            <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+          </div>
+          <div class="mt-2 flex items-baseline gap-2">
+            <span id="stat-dupes" class="font-mono text-2xl sm:text-3xl font-bold text-[#0A0A0A] dark:text-white">0</span>
+            <span class="text-xs text-emerald-600 dark:text-emerald-400 font-medium">blocked</span>
+          </div>
+          <p class="mt-1 text-[11px] text-[#525252] dark:text-neutral-500">IndexedDB 30-day guard</p>
+        </div>
+
+        <!-- Couriers Breakdown Card -->
+        <div class="rounded-xl border border-border dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#111111] p-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium text-[#525252] dark:text-neutral-400">Courier Groups</span>
+            <span class="h-2 w-2 rounded-full bg-neutral-400"></span>
+          </div>
+          <div id="stat-couriers" class="mt-2 flex flex-wrap gap-1 text-[11px] font-mono">
+            <span class="rounded bg-white dark:bg-[#1C1C1C] px-1.5 py-0.5 border border-neutral-200 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200">Valmo: 0</span>
+          </div>
+          <p class="mt-1 text-[11px] text-[#525252] dark:text-neutral-500">Grouped for 6 PM pickup</p>
+        </div>
+
+      </div>
+
+      <!-- Controls & Options Accordion/Grid -->
+      <div class="mt-6 rounded-xl border border-border dark:border-neutral-800 bg-white dark:bg-[#111111] p-5 shadow-2xs">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Format Selector -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-[#525252] dark:text-neutral-400 mb-2">
+              Output Format
+            </label>
+            <div class="space-y-2 text-xs">
+              <label class="flex items-center gap-2.5 p-2 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-[#161616] hover:bg-neutral-100 dark:hover:bg-neutral-800/60 cursor-pointer">
+                <input type="radio" name="opt-output" value="4x6_thermal" checked class="text-[#0A0A0A] focus:ring-black" />
+                <div>
+                  <div class="font-semibold text-[#0A0A0A] dark:text-white">4×6 Thermal Roll (Default)</div>
+                  <div class="text-[11px] text-neutral-500 dark:text-neutral-400">288×432 pt with bottom SKU stamp</div>
+                </div>
+              </label>
+
+              <label class="flex items-center gap-2.5 p-2 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161616] hover:bg-neutral-50 dark:hover:bg-neutral-800/60 cursor-pointer">
+                <input type="radio" name="opt-output" value="4x4_with_invoice" class="text-[#0A0A0A] focus:ring-black" />
+                <div>
+                  <div class="font-semibold text-[#0A0A0A] dark:text-white">4×4 Thermal + Cut Invoice</div>
+                  <div class="text-[11px] text-neutral-500 dark:text-neutral-400">Sticker on top + folding bill</div>
+                </div>
+              </label>
+
+              <label class="flex items-center gap-2.5 p-2 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161616] hover:bg-neutral-50 dark:hover:bg-neutral-800/60 cursor-pointer">
+                <input type="radio" name="opt-output" value="a4_4in1_grid" class="text-[#0A0A0A] focus:ring-black" />
+                <div>
+                  <div class="font-semibold text-[#0A0A0A] dark:text-white">A4 4-in-1 Sheet Grid</div>
+                  <div class="text-[11px] text-neutral-500 dark:text-neutral-400">For Laser / Deskjet sticker paper</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Sorting & Picklist -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-[#525252] dark:text-neutral-400 mb-2">
+              Sorting & Picklist
+            </label>
+            
+            <div class="space-y-3 text-xs">
+              <div>
+                <label for="select-sort" class="block text-[11px] text-neutral-500 dark:text-neutral-400 mb-1">Sort Hierarchy</label>
+                <select id="select-sort" class="w-full rounded-md border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-[#161616] px-2.5 py-1.5 text-xs text-[#0A0A0A] dark:text-white focus:border-black focus:outline-hidden">
+                  <option value="courier_handover">1. Courier Handover → SKU → Size (XS-3XL)</option>
+                  <option value="apparel_size">2. Apparel Size First (XS → S → M → L → XL → 3XL)</option>
+                  <option value="sku_alphabetical">3. SKU Alphabetical</option>
+                  <option value="order_id">4. Original Order ID Sequence</option>
+                </select>
+              </div>
+
+              <label class="flex items-start gap-2 cursor-pointer pt-1">
+                <input type="checkbox" id="check-picklist" checked class="mt-0.5 rounded text-[#0A0A0A] focus:ring-black" />
+                <div>
+                  <span class="font-medium text-[#0A0A0A] dark:text-white">Page-1 Courier Picklist Sticker</span>
+                  <p class="text-[11px] text-neutral-500 dark:text-neutral-400">Generates Sticker #1 with courier totals & rack pick count</p>
+                </div>
+              </label>
+
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" id="check-stamp-sku" checked class="mt-0.5 rounded text-[#0A0A0A] focus:ring-black" />
+                <div>
+                  <span class="font-medium text-[#0A0A0A] dark:text-white">Stamp Bottom SKU & Size Bar</span>
+                  <p class="text-[11px] text-neutral-500 dark:text-neutral-400">Rescues hidden bottom invoice details to 72pt footer</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Custom Packing Note -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-[#525252] dark:text-neutral-400 mb-2">
+              Custom Safety Note
+            </label>
+            <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mb-1.5">
+              Stamped at the very bottom of each label to protect against false buyer returns:
+            </p>
+            <input
+              type="text"
+              id="input-custom-note"
+              value="★ PLEASE RECORD UNBOXING VIDEO FOR ANY RETURN CLAIMS ★"
+              class="w-full rounded-md border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-[#161616] px-2.5 py-1.5 text-xs text-[#0A0A0A] dark:text-white focus:border-black focus:outline-hidden font-mono"
+            />
+
+            <div class="mt-3 flex items-center justify-between text-[11px] text-neutral-500 dark:text-neutral-400 pt-2 border-t border-neutral-100 dark:border-neutral-800">
+              <span>Duplication Filter:</span>
+              <span class="font-semibold text-emerald-600 dark:text-emerald-400">Active (30-day memory)</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Filter Tabs & Labels Preview Table -->
+      <div class="mt-6 rounded-xl border border-border dark:border-neutral-800 bg-white dark:bg-[#111111] shadow-2xs overflow-hidden">
+        
+        <!-- Filter Tabs -->
+        <div class="flex items-center justify-between border-b border-border dark:border-neutral-800 bg-neutral-50/70 dark:bg-[#141414] px-4 py-2.5">
+          <div id="courier-filter-tabs" class="flex flex-wrap items-center gap-1.5 text-xs">
+            <button class="active-tab px-3 py-1 rounded-md font-semibold bg-white dark:bg-[#1F1F1F] border border-neutral-300 dark:border-neutral-700 text-[#0A0A0A] dark:text-white shadow-2xs">
+              All Orders (<span id="tab-count-all">0</span>)
+            </button>
+          </div>
+          
+          <span class="text-xs font-mono text-[#525252] dark:text-neutral-400" id="batch-code-display">
+            BATCH: READY
+          </span>
+        </div>
+
+        <!-- Orders Table -->
+        <div class="overflow-x-auto max-h-[380px] overflow-y-auto">
+          <table class="w-full text-left text-xs font-body">
+            <thead class="sticky top-0 bg-neutral-100 dark:bg-[#171717] text-[#525252] dark:text-neutral-400 font-medium border-b border-neutral-200 dark:border-neutral-800">
+              <tr>
+                <th class="py-2.5 px-3">#</th>
+                <th class="py-2.5 px-3">Platform</th>
+                <th class="py-2.5 px-3">Courier & AWB</th>
+                <th class="py-2.5 px-3">Rescued SKU & Item</th>
+                <th class="py-2.5 px-3">Size & Color</th>
+                <th class="py-2.5 px-3 text-center">Pack Qty</th>
+                <th class="py-2.5 px-3">Type</th>
+                <th class="py-2.5 px-3 text-right">Destination</th>
+              </tr>
+            </thead>
+            <tbody id="labels-table-body" class="divide-y divide-neutral-100 dark:divide-neutral-800/80">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <!-- Sticky Execution Action Bar -->
+      <div class="sticky bottom-4 z-40 mt-6 rounded-xl border border-neutral-800 dark:border-neutral-700 bg-[#0A0A0A] dark:bg-[#141414] p-4 text-white shadow-2xl flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-800 dark:bg-neutral-800 border border-neutral-700">
+            <svg class="h-5 w-5 text-[#EA580C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+          </div>
+          <div>
+            <div class="text-sm font-semibold flex items-center gap-2">
+              <span id="ready-count">0</span> Thermal Labels Ready
+              <span class="rounded bg-neutral-800 px-2 py-0.5 text-[10px] text-neutral-300 font-mono">203 DPI Clean</span>
+            </div>
+            <div class="text-xs text-neutral-400">
+              Vector Barcodes • Rescued SKUs • Inverted Multi-Packs
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <button
+            id="btn-reset"
+            class="rounded-md border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 px-3.5 py-2 text-xs font-medium text-neutral-300 hover:text-white transition-colors cursor-pointer"
+          >
+            Clear Batch
+          </button>
+
+          <button
+            id="btn-direct-print"
+            class="rounded-md border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 px-4 py-2 text-xs font-semibold text-white transition-colors flex items-center gap-1.5 cursor-pointer"
+          >
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            Print Direct
+          </button>
+
+          <button
+            id="btn-download-pdf"
+            class="rounded-md bg-[#EA580C] px-5 py-2 text-xs font-bold text-white hover:bg-orange-500 shadow-md hover:shadow-orange-500/20 transition-all flex items-center gap-1.5 cursor-pointer"
+          >
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Download 4×6 PDF
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Client Script for Processing -->
+<script>
+  import { processSellerBatch, type ProcessBatchResult } from '../core/pdf/clientBatchProcessor.ts';
+  import { generateSampleSellerPdf } from '../core/pdf/testSampleGenerator.ts';
+  import { recordPrintedAwbsLocal } from '../core/storage/awbDeduplicator.ts';
+
+  let currentBatchResult: ProcessBatchResult | null = null;
+  let activeFilterCourier = 'ALL';
+  let rawUploadedFiles: { id: string; name: string; buffer: ArrayBuffer }[] = [];
+
+  const dropzone = document.getElementById('dropzone') as HTMLElement;
+  const fileInput = document.getElementById('file-input') as HTMLInputElement;
+  const sampleBtn = document.getElementById('btn-sample-batch') as HTMLButtonElement;
+  const navSampleBtn = document.getElementById('nav-sample-btn') as HTMLButtonElement | null;
+  const heroSampleBtn = document.getElementById('hero-sample-btn') as HTMLButtonElement | null;
+  
+  const processingIndicator = document.getElementById('processing-indicator') as HTMLElement;
+  const progressStage = document.getElementById('progress-stage') as HTMLElement;
+  const progressPct = document.getElementById('progress-pct') as HTMLElement;
+  const progressBar = document.getElementById('progress-bar') as HTMLElement;
+  
+  const diagnosticsPanel = document.getElementById('diagnostics-panel') as HTMLElement;
+  const statTotal = document.getElementById('stat-total') as HTMLElement;
+  const statMulti = document.getElementById('stat-multi') as HTMLElement;
+  const statDupes = document.getElementById('stat-dupes') as HTMLElement;
+  const statCouriers = document.getElementById('stat-couriers') as HTMLElement;
+  
+  const labelsTableBody = document.getElementById('labels-table-body') as HTMLElement;
+  const courierFilterTabs = document.getElementById('courier-filter-tabs') as HTMLElement;
+  const readyCount = document.getElementById('ready-count') as HTMLElement;
+  const batchCodeDisplay = document.getElementById('batch-code-display') as HTMLElement;
+  
+  const btnDownloadPdf = document.getElementById('btn-download-pdf') as HTMLButtonElement;
+  const btnDirectPrint = document.getElementById('btn-direct-print') as HTMLButtonElement;
+  const btnReset = document.getElementById('btn-reset') as HTMLButtonElement;
+
+  const selectSort = document.getElementById('select-sort') as HTMLSelectElement;
+  const checkPicklist = document.getElementById('check-picklist') as HTMLInputElement;
+  const checkStampSku = document.getElementById('check-stamp-sku') as HTMLInputElement;
+  const inputCustomNote = document.getElementById('input-custom-note') as HTMLInputElement;
+
+  // Drag and Drop events
+  if (dropzone && fileInput) {
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.add('border-[#0A0A0A]', 'bg-neutral-100', 'dark:border-white', 'dark:bg-neutral-800/60');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.remove('border-[#0A0A0A]', 'bg-neutral-100', 'dark:border-white', 'dark:bg-neutral-800/60');
+      });
+    });
+
+    dropzone.addEventListener('drop', async (e) => {
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        await handleFiles(Array.from(e.dataTransfer.files));
+      }
+    });
+
+    fileInput.addEventListener('change', async () => {
+      if (fileInput.files && fileInput.files.length > 0) {
+        await handleFiles(Array.from(fileInput.files));
+      }
+    });
+  }
+
+  // Sample batch triggers
+  const loadSample = async () => {
+    updateProgress('Generating synthetic 15-order Meesho + Flipkart batch...', 15);
+    try {
+      const samplePdfBytes = await generateSampleSellerPdf();
+      rawUploadedFiles = [{
+        id: 'sample-batch-001',
+        name: 'Meesho_Flipkart_15_Sample_Orders.pdf',
+        buffer: samplePdfBytes.buffer.slice(samplePdfBytes.byteOffset, samplePdfBytes.byteOffset + samplePdfBytes.byteLength)
+      }];
+      await executeBatchProcessing();
+    } catch (err) {
+      console.error('Failed to load sample batch:', err);
+      alert('Error loading sample batch. Please try again.');
+    }
+  };
+
+  if (sampleBtn) sampleBtn.addEventListener('click', loadSample);
+  if (navSampleBtn) navSampleBtn.addEventListener('click', loadSample);
+  if (heroSampleBtn) heroSampleBtn.addEventListener('click', loadSample);
+
+  // File loading
+  async function handleFiles(files: File[]) {
+    const pdfFiles = files.filter(f => f.name.toLowerCase().endsWith('.pdf'));
+    if (pdfFiles.length === 0) {
+      alert('Please upload PDF files only.');
+      return;
+    }
+
+    rawUploadedFiles = [];
+    for (const f of pdfFiles) {
+      const buf = await f.arrayBuffer();
+      rawUploadedFiles.push({
+        id: `pdf-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+        name: f.name,
+        buffer: buf
+      });
+    }
+
+    await executeBatchProcessing();
+  }
+
+  // Core Batch Processing execution
+  async function executeBatchProcessing() {
+    if (rawUploadedFiles.length === 0) return;
+
+    processingIndicator.classList.remove('hidden');
+    diagnosticsPanel.classList.add('hidden');
+
+    const outputModeRadio = document.querySelector('input[name="opt-output"]:checked') as HTMLInputElement;
+    const outputMode = (outputModeRadio ? outputModeRadio.value : '4x6_thermal') as any;
+    const sortMode = (selectSort ? selectSort.value : 'courier_handover') as any;
+    const stampSku = checkStampSku ? checkStampSku.checked : true;
+    const includePicklistSticker = checkPicklist ? checkPicklist.checked : true;
+    const customNote = inputCustomNote ? inputCustomNote.value : '';
+
+    try {
+      currentBatchResult = await processSellerBatch({
+        files: rawUploadedFiles,
+        options: {
+          outputMode,
+          sortMode,
+          stampSku,
+          includePicklistSticker,
+          skipDuplicates: true,
+          customNote
+        },
+        onProgress: (stage, pct) => {
+          updateProgress(stage, pct);
+        }
+      });
+
+      renderDiagnostics(currentBatchResult);
+      renderTable(currentBatchResult);
+
+      processingIndicator.classList.add('hidden');
+      diagnosticsPanel.classList.remove('hidden');
+      diagnosticsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err: any) {
+      console.error('Batch processing failed:', err);
+      alert(`Processing failed: ${err.message || 'Unknown error'}`);
+      processingIndicator.classList.add('hidden');
+    }
+  }
+
+  function updateProgress(stage: string, pct: number) {
+    if (processingIndicator) processingIndicator.classList.remove('hidden');
+    if (progressStage) progressStage.textContent = stage;
+    if (progressPct) progressPct.textContent = `${pct}%`;
+    if (progressBar) progressBar.style.width = `${pct}%`;
+  }
+
+  function renderDiagnostics(result: ProcessBatchResult) {
+    statTotal.textContent = result.totalLabels.toString();
+    statMulti.textContent = result.multiQtyCount.toString();
+    statDupes.textContent = result.duplicateInfo.duplicateCount.toString();
+    readyCount.textContent = result.activeLabels.length.toString();
+    batchCodeDisplay.textContent = `BATCH: ${result.batchCode}`;
+
+    // Courier breakdown
+    statCouriers.innerHTML = '';
+    const courierEntries = Object.entries(result.courierCounts);
+    if (courierEntries.length === 0) {
+      statCouriers.innerHTML = '<span class="text-neutral-400">None detected</span>';
+    } else {
+      courierEntries.forEach(([courier, count]) => {
+        const badge = document.createElement('span');
+        badge.className = 'rounded bg-white dark:bg-[#1C1C1C] px-1.5 py-0.5 border border-neutral-200 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 font-medium';
+        badge.textContent = `${courier}: ${count}`;
+        statCouriers.appendChild(badge);
+      });
+    }
+
+    // Courier Tabs
+    courierFilterTabs.innerHTML = '';
+    const allTab = document.createElement('button');
+    allTab.className = `px-3 py-1 rounded-md font-semibold text-xs transition-colors cursor-pointer ${
+      activeFilterCourier === 'ALL'
+        ? 'bg-white dark:bg-[#1F1F1F] border border-neutral-300 dark:border-neutral-700 text-[#0A0A0A] dark:text-white shadow-2xs'
+        : 'text-[#525252] dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-[#0A0A0A] dark:hover:text-white'
+    }`;
+    allTab.textContent = `All Orders (${result.activeLabels.length})`;
+    allTab.onclick = () => {
+      activeFilterCourier = 'ALL';
+      renderDiagnostics(result);
+      renderTable(result);
+    };
+    courierFilterTabs.appendChild(allTab);
+
+    courierEntries.forEach(([courier, count]) => {
+      const tab = document.createElement('button');
+      tab.className = `px-3 py-1 rounded-md font-semibold text-xs transition-colors cursor-pointer ${
+        activeFilterCourier === courier
+          ? 'bg-white dark:bg-[#1F1F1F] border border-neutral-300 dark:border-neutral-700 text-[#0A0A0A] dark:text-white shadow-2xs'
+          : 'text-[#525252] dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-[#0A0A0A] dark:hover:text-white'
+      }`;
+      tab.textContent = `${courier} (${count})`;
+      tab.onclick = () => {
+        activeFilterCourier = courier;
+        renderDiagnostics(result);
+        renderTable(result);
+      };
+      courierFilterTabs.appendChild(tab);
+    });
+  }
+
+  function renderTable(result: ProcessBatchResult) {
+    labelsTableBody.innerHTML = '';
+    const filtered = activeFilterCourier === 'ALL'
+      ? result.activeLabels
+      : result.activeLabels.filter(l => l.courier.toUpperCase() === activeFilterCourier.toUpperCase());
+
+    if (filtered.length === 0) {
+      labelsTableBody.innerHTML = `<tr><td colspan="8" class="text-center py-6 text-neutral-400">No orders match filter</td></tr>`;
+      return;
+    }
+
+    filtered.forEach((label, idx) => {
+      const tr = document.createElement('tr');
+      tr.className = `hover:bg-neutral-50/80 dark:hover:bg-neutral-800/40 transition-colors ${label.isMultiQuantity ? 'bg-orange-50/40 dark:bg-orange-950/20' : ''}`;
+
+      const courierBadge = label.courier === 'VALMO'
+        ? 'bg-orange-100 dark:bg-orange-950/60 text-[#EA580C] dark:text-orange-400 border-orange-200 dark:border-orange-900/60'
+        : label.courier === 'EKART'
+        ? 'bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-900/60'
+        : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-300 border-neutral-200 dark:border-neutral-700';
+
+      const platformBadge = label.marketplace === 'MEESHO' || label.marketplace === 'Meesho'
+        ? 'bg-fuchsia-50 dark:bg-fuchsia-950/40 text-fuchsia-800 dark:text-fuchsia-300 border-fuchsia-200 dark:border-fuchsia-900/50'
+        : 'bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-900/50';
+
+      const qtyBadge = label.totalQty >= 2
+        ? `<span class="inline-flex items-center gap-1 rounded bg-[#0A0A0A] dark:bg-white px-2 py-0.5 text-[11px] font-bold text-white dark:text-[#0A0A0A] shadow-2xs"><span class="text-[#EA580C]">★</span> ${label.totalQty} PCS</span>`
+        : `<span class="font-mono text-neutral-600 dark:text-neutral-400">1</span>`;
+
+      tr.innerHTML = `
+        <td class="py-2.5 px-3 font-mono text-neutral-400 text-[11px]">${idx + 1}</td>
+        <td class="py-2.5 px-3">
+          <span class="rounded px-1.5 py-0.5 text-[10px] font-semibold border ${platformBadge}">
+            ${label.marketplace}
+          </span>
+        </td>
+        <td class="py-2.5 px-3">
+          <div class="font-mono font-semibold text-[#0A0A0A] dark:text-white">${label.awbNumber}</div>
+          <span class="rounded px-1 py-0.2 text-[9px] font-bold border ${courierBadge}">${label.courier}</span>
+        </td>
+        <td class="py-2.5 px-3">
+          <div class="font-mono font-bold text-[#0A0A0A] dark:text-white">${label.sku || 'N/A'}</div>
+          <div class="text-[10px] text-neutral-500 dark:text-neutral-400 truncate max-w-[180px]">${label.productTitle || 'Standard SKU Item'}</div>
+        </td>
+        <td class="py-2.5 px-3">
+          <span class="font-semibold text-[#0A0A0A] dark:text-white">${label.size || '-'}</span>
+          <span class="text-neutral-400">•</span>
+          <span class="text-neutral-600 dark:text-neutral-400">${label.color || '-'}</span>
+        </td>
+        <td class="py-2.5 px-3 text-center">
+          ${qtyBadge}
+        </td>
+        <td class="py-2.5 px-3">
+          <span class="rounded px-1.5 py-0.5 text-[10px] font-medium ${label.paymentMode === 'COD' ? 'bg-amber-100 dark:bg-amber-950/50 text-amber-900 dark:text-amber-300 border border-amber-200 dark:border-amber-900/50' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-700'}">
+            ${label.paymentMode}
+          </span>
+        </td>
+        <td class="py-2.5 px-3 text-right">
+          <span class="font-mono font-semibold text-[#0A0A0A] dark:text-white">${label.destinationPin || label.buyerPincode || '-'}</span>
+          <div class="text-[10px] text-neutral-400 truncate max-w-[120px] ml-auto">${label.buyerCity || ''}</div>
+        </td>
+      `;
+
+      labelsTableBody.appendChild(tr);
+    });
+  }
+
+  // Trigger download
+  if (btnDownloadPdf) {
+    btnDownloadPdf.addEventListener('click', async () => {
+      if (!currentBatchResult) return;
+
+      const blob = new Blob([currentBatchResult.outputPdfBytes], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `SmartLabelCrop_${currentBatchResult.batchCode}_${currentBatchResult.activeLabels.length}_Labels.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      // Record to IndexedDB to activate 30-day deduplication protection
+      await recordPrintedAwbsLocal(currentBatchResult.activeLabels, currentBatchResult.batchCode);
+    });
+  }
+
+  // Direct print
+  if (btnDirectPrint) {
+    btnDirectPrint.addEventListener('click', () => {
+      if (!currentBatchResult) return;
+      const blob = new Blob([currentBatchResult.outputPdfBytes], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const printWindow = window.open(url);
+      if (printWindow) {
+        printWindow.addEventListener('load', () => {
+          printWindow.print();
+        });
+      }
+    });
+  }
+
+  // Reset
+  if (btnReset) {
+    btnReset.addEventListener('click', () => {
+      currentBatchResult = null;
+      rawUploadedFiles = [];
+      diagnosticsPanel.classList.add('hidden');
+      if (fileInput) fileInput.value = '';
+    });
+  }
+
+  // Re-run on option changes
+  [selectSort, checkPicklist, checkStampSku].forEach(el => {
+    if (el) el.addEventListener('change', () => {
+      if (rawUploadedFiles.length > 0) {
+        executeBatchProcessing();
+      }
+    });
+  });
+
+  const outputRadios = document.querySelectorAll('input[name="opt-output"]');
+  outputRadios.forEach(r => {
+    r.addEventListener('change', () => {
+      if (rawUploadedFiles.length > 0) {
+        executeBatchProcessing();
+      }
+    });
+  });
+</script>
