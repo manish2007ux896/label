@@ -28,6 +28,16 @@
             </svg>
             Load 15-Order Test Batch
           </button>
+
+          <button
+            id="btn-open-picklist-modal"
+            class="inline-flex items-center gap-1.5 rounded-md border border-emerald-600/60 dark:border-emerald-700/60 bg-emerald-50/80 dark:bg-emerald-950/40 px-3.5 py-1.5 text-xs font-semibold text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors shadow-2xs cursor-pointer"
+          >
+            <svg class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+            </svg>
+            Excel Order Picklist
+          </button>
         </div>
       </div>
       <p class="mt-2 text-sm text-[#525252] dark:text-neutral-400 max-w-2xl font-body">
@@ -70,6 +80,9 @@
         </span>
         <span class="inline-flex items-center rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#181818] px-2.5 py-1 text-[11px] font-medium text-neutral-600 dark:text-neutral-400 shadow-2xs">
           ⚡ Valmo / Delhivery / Ekart
+        </span>
+        <span class="inline-flex items-center rounded-md border border-emerald-200 dark:border-emerald-800/60 bg-emerald-50/50 dark:bg-emerald-950/30 px-2.5 py-1 text-[11px] font-medium text-emerald-700 dark:text-emerald-300 shadow-2xs">
+          📋 Order Report CSV to Picklist
         </span>
       </div>
     </div>
@@ -243,6 +256,54 @@
         </div>
       </div>
 
+      <!-- Optional: Excel SKU & Warehouse Rack Mapping Bar -->
+      <div class="mt-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#141414] p-3.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div class="flex items-center gap-2.5">
+          <div class="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <div>
+            <div class="font-semibold text-[#0A0A0A] dark:text-white flex items-center gap-2">
+              <span>Warehouse Rack / Bin Mapping (Excel / CSV)</span>
+              <span id="badge-sku-count" class="rounded bg-neutral-200 dark:bg-neutral-800 px-1.5 py-0.2 text-[10px] text-neutral-700 dark:text-neutral-300 font-mono">0 Mapped</span>
+            </div>
+            <div class="text-[11px] text-[#525252] dark:text-neutral-400">
+              Upload your SKU ↔ Rack sheet to automatically stamp shelf numbers (e.g. <span class="font-mono font-semibold">RACK: C-12</span>) on your 4×6 labels.
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            id="btn-sample-sku-csv"
+            class="rounded-md border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 px-2.5 py-1.5 text-[11px] font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors cursor-pointer"
+            title="Download sample CSV template"
+          >
+            Sample Template
+          </button>
+          
+          <label class="rounded-md bg-neutral-900 dark:bg-white px-3 py-1.5 text-[11px] font-semibold text-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-colors cursor-pointer inline-flex items-center gap-1">
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+            </svg>
+            <span>Upload SKU Sheet</span>
+            <input type="file" id="sku-csv-input" accept=".csv,.txt,.tsv" class="hidden" />
+          </label>
+
+          <button
+            type="button"
+            id="btn-clear-sku-map"
+            class="hidden rounded-md border border-red-200 dark:border-red-900/60 bg-red-50 dark:bg-red-950/30 px-2 py-1.5 text-[11px] font-medium text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors cursor-pointer"
+            title="Clear saved SKU rack mappings"
+          >
+            Clear
+          </button>
+        </div>
+      </div>
+
       <!-- Filter Tabs & Labels Preview Table -->
       <div class="mt-6 rounded-xl border border-border dark:border-neutral-800 bg-white dark:bg-[#111111] shadow-2xs overflow-hidden">
         
@@ -310,6 +371,39 @@
           </button>
 
           <button
+            id="btn-export-csv"
+            class="rounded-md border border-emerald-600/70 bg-emerald-950/40 hover:bg-emerald-900/50 px-3.5 py-2 text-xs font-semibold text-emerald-300 hover:text-emerald-200 transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
+            title="Download Excel/CSV dispatch handover manifest"
+          >
+            <svg class="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Export Manifest (CSV)
+          </button>
+
+          <button
+            id="btn-open-verify-modal"
+            class="rounded-md border border-purple-600/70 bg-purple-950/40 hover:bg-purple-900/50 px-3.5 py-2 text-xs font-semibold text-purple-300 hover:text-purple-200 transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
+            title="Scan parcels with USB scanner gun before 6 PM pickup to verify 100% count"
+          >
+            <svg class="h-4 w-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+            </svg>
+            Verify Handover (Scan)
+          </button>
+
+          <button
+            id="btn-whatsapp-share"
+            class="rounded-md border border-emerald-600 bg-emerald-600 hover:bg-emerald-500 px-3.5 py-2 text-xs font-semibold text-white transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
+            title="Share SmartLabelCrop with Surat, Jaipur & Tirupur supplier WhatsApp groups"
+          >
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/>
+            </svg>
+            Share Tool
+          </button>
+
+          <button
             id="btn-direct-print"
             class="rounded-md border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 px-4 py-2 text-xs font-semibold text-white transition-colors flex items-center gap-1.5 cursor-pointer"
           >
@@ -334,6 +428,246 @@
     </div>
 
   </div>
+
+  <!-- Standalone Excel Order Report Picklist Modal -->
+  <div id="modal-excel-picklist" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="relative w-full max-w-3xl rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#111111] p-6 sm:p-8 shadow-2xl transition-all">
+      
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between border-b border-neutral-200 dark:border-neutral-800 pb-4">
+        <div>
+          <div class="inline-flex items-center gap-2 mb-1">
+            <span class="h-2 w-2 rounded-[2px] bg-emerald-500"></span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Warehouse Picklist Generator</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+            Convert Meesho & Flipkart Order Reports to Picklist
+          </h3>
+          <p class="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+            Drop your marketplace Excel/CSV order report to tally inventory pull counts before printing labels.
+          </p>
+        </div>
+        <button
+          id="btn-close-picklist-modal"
+          class="rounded-lg p-1.5 text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer"
+        >
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Report Drop Area -->
+      <div class="mt-6">
+        <div
+          id="picklist-dropzone"
+          class="relative rounded-xl border-2 border-dashed border-neutral-300 dark:border-neutral-700 bg-neutral-50/50 dark:bg-[#161616] p-6 text-center hover:border-emerald-500 hover:bg-emerald-50/20 transition-all cursor-pointer"
+        >
+          <input
+            type="file"
+            id="picklist-file-input"
+            accept=".csv,.tsv,.txt"
+            class="absolute inset-0 h-full w-full opacity-0 cursor-pointer"
+          />
+          <div class="mx-auto flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 mb-2">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+          </div>
+          <p class="text-xs font-semibold text-[#0A0A0A] dark:text-white">
+            Drop Meesho "Pending Orders" or "Ready to Ship" CSV Report
+          </p>
+          <p class="mt-0.5 text-[11px] text-neutral-500 dark:text-neutral-400">
+            or click to browse from your computer
+          </p>
+          
+          <div class="mt-3">
+            <button
+              type="button"
+              id="btn-sample-report"
+              class="inline-flex items-center gap-1 rounded border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-[#1E1E1E] px-2.5 py-1 text-[11px] font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
+            >
+              ⚡ Test with Sample 6-Order Meesho Report
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Picklist Summary & Results (Hidden until loaded) -->
+      <div id="picklist-results" class="hidden mt-6 space-y-5">
+        
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+          <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#161616] p-3">
+            <span class="text-[11px] text-neutral-500 dark:text-neutral-400">Total Orders</span>
+            <div id="report-stat-orders" class="font-mono text-xl font-bold text-[#0A0A0A] dark:text-white mt-1">0</div>
+          </div>
+          <div class="rounded-xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/50 dark:bg-emerald-950/20 p-3">
+            <span class="text-[11px] font-semibold text-emerald-700 dark:text-emerald-400">Total Pull Units</span>
+            <div id="report-stat-units" class="font-mono text-xl font-bold text-emerald-600 dark:text-emerald-400 mt-1">0</div>
+          </div>
+          <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#161616] p-3">
+            <span class="text-[11px] text-neutral-500 dark:text-neutral-400">Unique SKUs</span>
+            <div id="report-stat-skus" class="font-mono text-xl font-bold text-[#0A0A0A] dark:text-white mt-1">0</div>
+          </div>
+          <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#161616] p-3">
+            <span class="text-[11px] text-neutral-500 dark:text-neutral-400">Couriers</span>
+            <div id="report-stat-couriers" class="font-mono text-[11px] text-[#0A0A0A] dark:text-white mt-1 truncate">-</div>
+          </div>
+        </div>
+
+        <!-- Aggregated Picklist Table -->
+        <div class="overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800 max-h-[220px] overflow-y-auto">
+          <table class="w-full text-left text-xs font-body">
+            <thead class="sticky top-0 bg-neutral-100 dark:bg-[#1A1A1A] text-neutral-600 dark:text-neutral-400 font-medium border-b border-neutral-200 dark:border-neutral-800 text-[11px]">
+              <tr>
+                <th class="py-2 px-3">Rack</th>
+                <th class="py-2 px-3">SKU & Item Nickname</th>
+                <th class="py-2 px-3">Size & Color</th>
+                <th class="py-2 px-3 text-right">Pull Units</th>
+              </tr>
+            </thead>
+            <tbody id="picklist-table-body" class="divide-y divide-neutral-100 dark:divide-neutral-800/80">
+              <!-- Populated by script -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Download Actions -->
+        <div class="flex flex-wrap items-center justify-end gap-2.5 pt-3 border-t border-neutral-200 dark:border-neutral-800">
+          <button
+            type="button"
+            id="btn-download-report-csv"
+            class="rounded-md border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 px-3.5 py-2 text-xs font-semibold text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors cursor-pointer"
+          >
+            Export Picklist CSV
+          </button>
+
+          <button
+            type="button"
+            id="btn-download-report-a4"
+            class="rounded-md border border-neutral-800 dark:border-neutral-600 bg-neutral-900 dark:bg-neutral-100 px-4 py-2 text-xs font-semibold text-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-white transition-colors cursor-pointer flex items-center gap-1.5"
+          >
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Print A4 Pull Sheet
+          </button>
+
+          <button
+            type="button"
+            id="btn-download-report-thermal"
+            class="rounded-md bg-emerald-600 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-500 shadow-md transition-colors cursor-pointer flex items-center gap-1.5"
+          >
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            Print 4×6 Picklist Sticker
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Handover Verification Scanner Modal -->
+  <div id="modal-handover-verify" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="relative w-full max-w-2xl rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#111111] p-6 sm:p-8 shadow-2xl transition-all">
+      
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between border-b border-neutral-200 dark:border-neutral-800 pb-4">
+        <div>
+          <div class="inline-flex items-center gap-2 mb-1">
+            <span class="h-2 w-2 rounded-[2px] bg-purple-500"></span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">Dispatch Audit Shield</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+            6 PM Courier Handover Barcode Scanner
+          </h3>
+          <p class="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+            Scan packed parcel barcodes with your handheld scanner gun before courier pickup to guarantee zero missing shipments.
+          </p>
+        </div>
+        <button
+          id="btn-close-verify-modal"
+          class="rounded-lg p-1.5 text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer"
+        >
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Real-Time Scanner Input -->
+      <div class="mt-6">
+        <label for="input-scan-barcode" class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
+          Scan Barcode or Type AWB:
+        </label>
+        <div class="relative">
+          <input
+            type="text"
+            id="input-scan-barcode"
+            placeholder="Scan AWB tracking number (USB gun or enter)..."
+            autocomplete="off"
+            class="w-full rounded-xl border-2 border-purple-500 bg-purple-50/20 dark:bg-purple-950/20 px-4 py-3 text-sm font-mono font-bold text-[#0A0A0A] dark:text-white focus:outline-hidden focus:ring-2 focus:ring-purple-500"
+          />
+          <div class="absolute right-3 top-3.5 text-xs text-neutral-400 font-mono">
+            PRESS ENTER
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Scan Counter HUD -->
+      <div class="mt-6 grid grid-cols-3 gap-3 text-center">
+        <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#161616] p-3">
+          <span class="text-[11px] text-neutral-500 dark:text-neutral-400">Total in Batch</span>
+          <div id="verify-stat-total" class="font-mono text-2xl font-bold text-[#0A0A0A] dark:text-white mt-0.5">0</div>
+        </div>
+        <div class="rounded-xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/50 dark:bg-emerald-950/30 p-3">
+          <span class="text-[11px] font-semibold text-emerald-700 dark:text-emerald-400">Scanned OK</span>
+          <div id="verify-stat-scanned" class="font-mono text-2xl font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">0</div>
+        </div>
+        <div class="rounded-xl border border-orange-200 dark:border-orange-900/60 bg-orange-50/50 dark:bg-orange-950/30 p-3">
+          <span class="text-[11px] font-semibold text-[#EA580C]">Remaining</span>
+          <div id="verify-stat-remaining" class="font-mono text-2xl font-bold text-[#EA580C] mt-0.5">0</div>
+        </div>
+      </div>
+
+      <!-- Scanned Feed List -->
+      <div class="mt-6">
+        <div class="flex items-center justify-between text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-2">
+          <span>Recent Scanned Parcels</span>
+          <span id="verify-status-banner" class="text-emerald-600 dark:text-emerald-400 font-bold">Ready to scan</span>
+        </div>
+        <div id="verify-feed" class="overflow-y-auto max-h-[180px] rounded-xl border border-neutral-200 dark:border-neutral-800 divide-y divide-neutral-100 dark:divide-neutral-800 text-xs font-mono p-1">
+          <div class="text-center py-6 text-neutral-400 text-xs font-sans">
+            Ready! Aim your barcode scanner gun at the package shipping label.
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="mt-6 flex items-center justify-between pt-4 border-t border-neutral-200 dark:border-neutral-800">
+        <button
+          type="button"
+          id="btn-reset-verify"
+          class="text-xs text-neutral-500 hover:text-red-600 dark:hover:text-red-400 transition-colors cursor-pointer"
+        >
+          Reset Scan Count
+        </button>
+
+        <button
+          type="button"
+          id="btn-close-verify"
+          class="rounded-md bg-neutral-900 dark:bg-white px-4 py-2 text-xs font-semibold text-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-colors cursor-pointer"
+        >
+          Done Scanning
+        </button>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <!-- Client Script for Processing -->
@@ -341,6 +675,19 @@
   import { processSellerBatch, type ProcessBatchResult } from '../core/pdf/clientBatchProcessor.ts';
   import { generateSampleSellerPdf } from '../core/pdf/testSampleGenerator.ts';
   import { recordPrintedAwbsLocal } from '../core/storage/awbDeduplicator.ts';
+  import { downloadBatchManifestCsv } from '../core/storage/exportBatchCsv.ts';
+  import { importSkuMappingCsv, getSkuMappingCount, clearAllSkuMappings, generateSampleSkuMappingCsv } from '../core/storage/skuMappingStorage.ts';
+  import {
+    parseAndAggregateOrderReport,
+    renderStandaloneThermalPicklistPdf,
+    renderA4WarehousePullSheetPdf,
+    type OrderReportAggregationResult
+  } from '../core/parsers/orderReportAggregator.ts';
+  import {
+    playBatchSuccessSound,
+    playDuplicateWarningSound,
+    playScanBeepSound
+  } from '../core/audio/soundFeedback.ts';
 
   let currentBatchResult: ProcessBatchResult | null = null;
   let activeFilterCourier = 'ALL';
@@ -371,6 +718,11 @@
   const btnDownloadPdf = document.getElementById('btn-download-pdf') as HTMLButtonElement;
   const btnDirectPrint = document.getElementById('btn-direct-print') as HTMLButtonElement;
   const btnReset = document.getElementById('btn-reset') as HTMLButtonElement;
+  const btnExportCsv = document.getElementById('btn-export-csv') as HTMLButtonElement | null;
+  const badgeSkuCount = document.getElementById('badge-sku-count') as HTMLElement | null;
+  const skuCsvInput = document.getElementById('sku-csv-input') as HTMLInputElement | null;
+  const btnSampleSkuCsv = document.getElementById('btn-sample-sku-csv') as HTMLButtonElement | null;
+  const btnClearSkuMap = document.getElementById('btn-clear-sku-map') as HTMLButtonElement | null;
 
   const selectSort = document.getElementById('select-sort') as HTMLSelectElement;
   const checkPicklist = document.getElementById('check-picklist') as HTMLInputElement;
@@ -482,6 +834,13 @@
 
       renderDiagnostics(currentBatchResult);
       renderTable(currentBatchResult);
+
+      // Auditory Feedback (Phase 3)
+      if (currentBatchResult.duplicateInfo.hasDuplicates) {
+        playDuplicateWarningSound();
+      } else {
+        playBatchSuccessSound();
+      }
 
       processingIndicator.classList.add('hidden');
       diagnosticsPanel.classList.remove('hidden');
@@ -595,7 +954,10 @@
           <span class="rounded px-1 py-0.2 text-[9px] font-bold border ${courierBadge}">${label.courier}</span>
         </td>
         <td class="py-2.5 px-3">
-          <div class="font-mono font-bold text-[#0A0A0A] dark:text-white">${label.sku || 'N/A'}</div>
+          <div class="font-mono font-bold text-[#0A0A0A] dark:text-white flex items-center gap-1.5 flex-wrap">
+            <span>${label.sku || 'N/A'}</span>
+            ${label.rackCode && label.rackCode !== 'UNASSIGNED' ? `<span class="rounded bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 px-1 py-0.2 text-[9px] font-bold text-neutral-700 dark:text-neutral-300">RACK: ${label.rackCode}</span>` : ''}
+          </div>
           <div class="text-[10px] text-neutral-500 dark:text-neutral-400 truncate max-w-[180px]">${label.productTitle || 'Standard SKU Item'}</div>
         </td>
         <td class="py-2.5 px-3">
@@ -618,6 +980,388 @@
       `;
 
       labelsTableBody.appendChild(tr);
+    });
+  }
+
+  // Refresh SKU Mapping UI indicator
+  async function refreshSkuMappingUI() {
+    try {
+      const count = await getSkuMappingCount();
+      if (badgeSkuCount) {
+        badgeSkuCount.textContent = count > 0 ? `✓ ${count} Mapped` : '0 Mapped';
+        if (count > 0) {
+          badgeSkuCount.classList.remove('bg-neutral-200', 'text-neutral-700');
+          badgeSkuCount.classList.add('bg-emerald-100', 'text-emerald-800', 'dark:bg-emerald-950/60', 'dark:text-emerald-300');
+        } else {
+          badgeSkuCount.classList.add('bg-neutral-200', 'text-neutral-700');
+          badgeSkuCount.classList.remove('bg-emerald-100', 'text-emerald-800', 'dark:bg-emerald-950/60', 'dark:text-emerald-300');
+        }
+      }
+      if (btnClearSkuMap) {
+        if (count > 0) {
+          btnClearSkuMap.classList.remove('hidden');
+        } else {
+          btnClearSkuMap.classList.add('hidden');
+        }
+      }
+    } catch {
+      // Ignore
+    }
+  }
+
+  // SKU CSV Upload
+  if (skuCsvInput) {
+    skuCsvInput.addEventListener('change', async () => {
+      if (!skuCsvInput.files || skuCsvInput.files.length === 0) return;
+      const file = skuCsvInput.files[0];
+      const text = await file.text();
+      const res = await importSkuMappingCsv(text);
+      if (res.importedCount > 0) {
+        alert(`Successfully imported ${res.importedCount} SKU rack mapping(s) into local storage!`);
+        await refreshSkuMappingUI();
+        if (rawUploadedFiles.length > 0) {
+          await executeBatchProcessing();
+        }
+      } else {
+        alert('Could not find valid SKU and Rack mappings. Please check format or download the sample template.');
+      }
+      skuCsvInput.value = '';
+    });
+  }
+
+  // Sample CSV Download
+  if (btnSampleSkuCsv) {
+    btnSampleSkuCsv.addEventListener('click', () => {
+      const sample = generateSampleSkuMappingCsv();
+      const blob = new Blob([sample], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'SmartLabelCrop_Sample_SKU_Mapping.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  // Handover Verification Scanner Logic (Phase 3)
+  const btnOpenVerifyModal = document.getElementById('btn-open-verify-modal') as HTMLButtonElement | null;
+  const btnCloseVerifyModal = document.getElementById('btn-close-verify-modal') as HTMLButtonElement | null;
+  const btnCloseVerify = document.getElementById('btn-close-verify') as HTMLButtonElement | null;
+  const modalHandoverVerify = document.getElementById('modal-handover-verify') as HTMLElement | null;
+  const inputScanBarcode = document.getElementById('input-scan-barcode') as HTMLInputElement | null;
+  const verifyStatTotal = document.getElementById('verify-stat-total') as HTMLElement | null;
+  const verifyStatScanned = document.getElementById('verify-stat-scanned') as HTMLElement | null;
+  const verifyStatRemaining = document.getElementById('verify-stat-remaining') as HTMLElement | null;
+  const verifyStatusBanner = document.getElementById('verify-status-banner') as HTMLElement | null;
+  const verifyFeed = document.getElementById('verify-feed') as HTMLElement | null;
+  const btnResetVerify = document.getElementById('btn-reset-verify') as HTMLButtonElement | null;
+
+  const scannedAwbs = new Set<string>();
+
+  function updateVerifyStats() {
+    if (!currentBatchResult) return;
+    const total = currentBatchResult.activeLabels.length;
+    const scanned = scannedAwbs.size;
+    const remaining = Math.max(0, total - scanned);
+
+    if (verifyStatTotal) verifyStatTotal.textContent = total.toString();
+    if (verifyStatScanned) verifyStatScanned.textContent = scanned.toString();
+    if (verifyStatRemaining) verifyStatRemaining.textContent = remaining.toString();
+
+    if (verifyStatusBanner) {
+      if (scanned === total && total > 0) {
+        verifyStatusBanner.textContent = '🎉 100% BATCH VERIFIED! Ready for Handover';
+        verifyStatusBanner.className = 'text-emerald-600 dark:text-emerald-400 font-bold';
+        playBatchSuccessSound();
+      } else {
+        verifyStatusBanner.textContent = `${remaining} parcels pending scan`;
+        verifyStatusBanner.className = 'text-purple-600 dark:text-purple-400 font-bold';
+      }
+    }
+  }
+
+  function handleBarcodeScan(rawCode: string) {
+    if (!currentBatchResult) {
+      alert('Please process a batch of labels first.');
+      return;
+    }
+    const clean = rawCode.trim().toUpperCase();
+    if (!clean) return;
+
+    // Check if clean AWB matches any label in the batch
+    const match = currentBatchResult.activeLabels.find(l => 
+      l.awbNumber.toUpperCase() === clean || 
+      l.orderId.toUpperCase() === clean ||
+      (l.subOrderNo && l.subOrderNo.toUpperCase() === clean)
+    );
+
+    if (!match) {
+      playDuplicateWarningSound();
+      alert(`AWB '${clean}' was NOT found in this batch!`);
+      return;
+    }
+
+    if (scannedAwbs.has(match.awbNumber)) {
+      playDuplicateWarningSound();
+      alert(`AWB '${match.awbNumber}' was ALREADY scanned and verified!`);
+      return;
+    }
+
+    // New verification
+    scannedAwbs.add(match.awbNumber);
+    playScanBeepSound();
+
+    if (verifyFeed) {
+      const row = document.createElement('div');
+      row.className = 'flex items-center justify-between p-2 bg-emerald-50/60 dark:bg-emerald-950/30 text-emerald-900 dark:text-emerald-200 rounded';
+      const timeStr = new Date().toLocaleTimeString('en-IN', { timeStyle: 'medium' });
+      row.innerHTML = `
+        <div class="flex items-center gap-2">
+          <span class="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
+          <span class="font-bold">${match.awbNumber}</span>
+          <span class="text-neutral-500 text-[10px]">(${match.courier} | ${match.sku})</span>
+        </div>
+        <span class="text-[10px] text-neutral-400">${timeStr}</span>
+      `;
+      if (verifyFeed.children.length === 1 && verifyFeed.children[0].textContent?.includes('Ready!')) {
+        verifyFeed.innerHTML = '';
+      }
+      verifyFeed.prepend(row);
+    }
+
+    updateVerifyStats();
+  }
+
+  if (btnOpenVerifyModal && modalHandoverVerify) {
+    btnOpenVerifyModal.addEventListener('click', () => {
+      if (!currentBatchResult || currentBatchResult.activeLabels.length === 0) {
+        alert('Please process a batch of labels before starting handover verification.');
+        return;
+      }
+      updateVerifyStats();
+      modalHandoverVerify.classList.remove('hidden');
+      setTimeout(() => inputScanBarcode?.focus(), 100);
+    });
+  }
+
+  [btnCloseVerifyModal, btnCloseVerify].forEach(btn => {
+    if (btn && modalHandoverVerify) {
+      btn.addEventListener('click', () => {
+        modalHandoverVerify.classList.add('hidden');
+      });
+    }
+  });
+
+  if (inputScanBarcode) {
+    inputScanBarcode.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleBarcodeScan(inputScanBarcode.value);
+        inputScanBarcode.value = '';
+      }
+    });
+  }
+
+  if (btnResetVerify) {
+    btnResetVerify.addEventListener('click', () => {
+      if (confirm('Reset scanned parcels count for this session?')) {
+        scannedAwbs.clear();
+        if (verifyFeed) verifyFeed.innerHTML = '<div class="text-center py-6 text-neutral-400 text-xs font-sans">Ready! Aim your barcode scanner gun at the package shipping label.</div>';
+        updateVerifyStats();
+      }
+    });
+  }
+
+  // WhatsApp Community Referral Button (Phase 4)
+  const btnWhatsappShare = document.getElementById('btn-whatsapp-share') as HTMLButtonElement | null;
+  if (btnWhatsappShare) {
+    btnWhatsappShare.addEventListener('click', () => {
+      const shareMsg = 'Bhai, Meesho aur Flipkart ke shipping labels crop karne ka 100% free vector tool: SmartLabelCrop.in\n\n' +
+        '✓ Barcode crisp 203 DPI print (Valmo / Ekart scanner fail nahi hota)\n' +
+        '✓ Multi-quantity pack alert automatic black box\n' +
+        '✓ 1-click Excel handover manifest export\n' +
+        'Check karo: https://smartlabelcrop.in';
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareMsg)}`, '_blank');
+    });
+  }
+
+  // Clear SKU Mappings
+  if (btnClearSkuMap) {
+    btnClearSkuMap.addEventListener('click', async () => {
+      if (confirm('Clear all saved SKU rack mappings from local browser storage?')) {
+        await clearAllSkuMappings();
+        await refreshSkuMappingUI();
+        if (rawUploadedFiles.length > 0) {
+          await executeBatchProcessing();
+        }
+      }
+    });
+  }
+
+  // Export Manifest CSV
+  if (btnExportCsv) {
+    btnExportCsv.addEventListener('click', () => {
+      if (!currentBatchResult || currentBatchResult.activeLabels.length === 0) {
+        alert('Please process a batch of labels first before exporting manifest.');
+        return;
+      }
+      downloadBatchManifestCsv(currentBatchResult.activeLabels, currentBatchResult.batchCode);
+    });
+  }
+
+  // Initial check
+  refreshSkuMappingUI();
+
+  // Excel Order Report Picklist Modal Logic
+  let currentReportResult: OrderReportAggregationResult | null = null;
+  const btnOpenPicklistModal = document.getElementById('btn-open-picklist-modal') as HTMLButtonElement | null;
+  const btnClosePicklistModal = document.getElementById('btn-close-picklist-modal') as HTMLButtonElement | null;
+  const modalExcelPicklist = document.getElementById('modal-excel-picklist') as HTMLElement | null;
+  const picklistFileInput = document.getElementById('picklist-file-input') as HTMLInputElement | null;
+  const btnSampleReport = document.getElementById('btn-sample-report') as HTMLButtonElement | null;
+  const picklistResults = document.getElementById('picklist-results') as HTMLElement | null;
+  const picklistTableBody = document.getElementById('picklist-table-body') as HTMLElement | null;
+
+  const reportStatOrders = document.getElementById('report-stat-orders') as HTMLElement | null;
+  const reportStatUnits = document.getElementById('report-stat-units') as HTMLElement | null;
+  const reportStatSkus = document.getElementById('report-stat-skus') as HTMLElement | null;
+  const reportStatCouriers = document.getElementById('report-stat-couriers') as HTMLElement | null;
+
+  const btnDownloadReportThermal = document.getElementById('btn-download-report-thermal') as HTMLButtonElement | null;
+  const btnDownloadReportA4 = document.getElementById('btn-download-report-a4') as HTMLButtonElement | null;
+  const btnDownloadReportCsv = document.getElementById('btn-download-report-csv') as HTMLButtonElement | null;
+
+  if (btnOpenPicklistModal && modalExcelPicklist) {
+    btnOpenPicklistModal.addEventListener('click', () => {
+      modalExcelPicklist.classList.remove('hidden');
+    });
+  }
+
+  if (btnClosePicklistModal && modalExcelPicklist) {
+    btnClosePicklistModal.addEventListener('click', () => {
+      modalExcelPicklist.classList.add('hidden');
+    });
+  }
+
+  // Handle report file processing
+  async function processOrderReportText(content: string, fileName: string) {
+    try {
+      currentReportResult = await parseAndAggregateOrderReport(content, fileName);
+      if (picklistResults) picklistResults.classList.remove('hidden');
+      if (reportStatOrders) reportStatOrders.textContent = currentReportResult.totalOrders.toString();
+      if (reportStatUnits) reportStatUnits.textContent = currentReportResult.totalUnits.toString();
+      if (reportStatSkus) reportStatSkus.textContent = currentReportResult.uniqueSkusCount.toString();
+      if (reportStatCouriers) {
+        const cSummary = Object.entries(currentReportResult.courierCounts)
+          .map(([c, count]) => `${c}: ${count}`)
+          .join(', ');
+        reportStatCouriers.textContent = cSummary || 'Standard';
+      }
+
+      if (picklistTableBody) {
+        picklistTableBody.innerHTML = '';
+        currentReportResult.rows.forEach(item => {
+          const row = document.createElement('tr');
+          row.className = 'hover:bg-neutral-50 dark:hover:bg-neutral-800/40 transition-colors';
+          row.innerHTML = `
+            <td class="py-2 px-3 font-mono font-semibold text-[#0A0A0A] dark:text-white">${item.rackCode || '-'}</td>
+            <td class="py-2 px-3 font-mono">
+              <span class="font-bold text-[#0A0A0A] dark:text-white">${item.sku}</span>
+              ${item.nickname ? `<span class="text-neutral-500 text-[10px]"> (${item.nickname})</span>` : ''}
+            </td>
+            <td class="py-2 px-3 text-neutral-600 dark:text-neutral-400">${item.size} / ${item.color}</td>
+            <td class="py-2 px-3 text-right font-mono font-bold text-emerald-600 dark:text-emerald-400">${item.totalUnits}</td>
+          `;
+          picklistTableBody.appendChild(row);
+        });
+      }
+    } catch (err: any) {
+      alert(`Could not parse order report: ${err.message || String(err)}`);
+    }
+  }
+
+  if (picklistFileInput) {
+    picklistFileInput.addEventListener('change', async () => {
+      if (!picklistFileInput.files || picklistFileInput.files.length === 0) return;
+      const file = picklistFileInput.files[0];
+      const text = await file.text();
+      await processOrderReportText(text, file.name);
+      picklistFileInput.value = '';
+    });
+  }
+
+  if (btnSampleReport) {
+    btnSampleReport.addEventListener('click', async () => {
+      const sampleCsv = [
+        'Sub Order No,Product Name,SKU,Variation,Color,Quantity,Courier Partner,Status',
+        '1082910482_1,Designer Georgette Saree,SAREE_GEO_RED,Free Size,Red,1,Valmo,Pending',
+        '1082910482_2,Designer Georgette Saree,SAREE_GEO_RED,Free Size,Red,2,Valmo,Pending',
+        '1082910483_1,Cotton Straight Kurti,KURTI_COTTON_BLUE,XL,Blue,1,Ekart,Pending',
+        '1082910484_1,Cotton Straight Kurti,KURTI_COTTON_BLUE,XL,Blue,3,Ekart,Pending',
+        '1082910485_1,Cotton Straight Kurti,KURTI_COTTON_BLUE,M,Navy,2,Delhivery,Pending',
+        '1082910486_1,Anarkali Gown,GOWN_ANARKALI_PINK,Free Size,Pink,1,Valmo,Pending'
+      ].join('\r\n');
+      await processOrderReportText(sampleCsv, 'Sample_Meesho_Report.csv');
+    });
+  }
+
+  if (btnDownloadReportThermal) {
+    btnDownloadReportThermal.addEventListener('click', async () => {
+      if (!currentReportResult) return;
+      const pdfBytes = await renderStandaloneThermalPicklistPdf(currentReportResult, 'MEESHO PICKLIST');
+      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `SmartLabelCrop_Picklist_Thermal4x6_${currentReportResult.totalUnits}units.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  if (btnDownloadReportA4) {
+    btnDownloadReportA4.addEventListener('click', async () => {
+      if (!currentReportResult) return;
+      const pdfBytes = await renderA4WarehousePullSheetPdf(currentReportResult, 'MEESHO WAREHOUSE PULL SHEET');
+      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `SmartLabelCrop_Warehouse_PullSheet_A4_${currentReportResult.totalUnits}units.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  if (btnDownloadReportCsv) {
+    btnDownloadReportCsv.addEventListener('click', () => {
+      if (!currentReportResult) return;
+      const headers = ['Rack Code', 'SKU', 'Packer Nickname', 'Size', 'Color', 'Total Units', 'Total Packets'];
+      const rows = currentReportResult.rows.map(r => [
+        `"${r.rackCode || '-'}"`,
+        `"${r.sku}"`,
+        `"${r.nickname || ''}"`,
+        `"${r.size}"`,
+        `"${r.color}"`,
+        r.totalUnits,
+        r.totalPackets
+      ].join(','));
+      const csvStr = '\uFEFF' + headers.join(',') + '\r\n' + rows.join('\r\n');
+      const blob = new Blob([csvStr], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `SmartLabelCrop_Picklist_Summary_${currentReportResult.totalUnits}units.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     });
   }
 

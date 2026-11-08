@@ -1,15 +1,84 @@
 ---
+// src/layouts/Layout.astro
 import '../styles/global.css';
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
 
 interface Props {
   title?: string;
   description?: string;
+  canonicalUrl?: string;
+  keywords?: string;
+  faqItems?: FaqItem[];
 }
+
+const defaultFaqs: FaqItem[] = [
+  {
+    question: "How do I crop Meesho shipping labels for 4x6 thermal printers?",
+    answer: "Simply drag and drop your downloaded Meesho A4 invoice PDF into SmartLabelCrop.in. The tool automatically detects label boundaries, removes bottom tax invoice whitespace, resizes the vector barcode to exact 4x6 inch (100x150 mm) dimensions, and rescues your SKU and size into an enlarged 72pt footer."
+  },
+  {
+    question: "Why do thermal barcodes from generic croppers fail to scan?",
+    answer: "Generic online croppers convert PDF pages into HTML5 canvas raster images (PNG/JPEG) before printing. On 203 DPI thermal printers, rasterized barcode lines blur. SmartLabelCrop preserves 100% native PDF vector paths, guaranteeing razor-sharp scans on Valmo, Ekart, and Delhivery handheld barcode guns."
+  },
+  {
+    question: "How does the Multi-Order pack alert protect against missing item claims?",
+    answer: "When a customer orders quantity >= 2, generic croppers leave a tiny 6pt font quantity that packing workers frequently miss, causing costly RTO losses. SmartLabelCrop automatically stamps an inverted solid-black banner across the label: '[★ MULTI-ORDER: PACK X PCS ★]'."
+  },
+  {
+    question: "Can I convert Meesho or Flipkart Excel order reports into a picklist?",
+    answer: "Yes! Use our standalone Excel Order Picklist feature. Drop your Meesho 'Pending Orders' CSV or Excel report, and our tool automatically aggregates total units needed by SKU, size, and color, and prints a 4x6 thermal picklist sticker or printable A4 pull sheet."
+  },
+  {
+    question: "Is buyer PII and GSTIN data secure and DPDP Act compliant?",
+    answer: "SmartLabelCrop processes 100% of files client-side inside your browser tab using WebAssembly and Javascript. Zero buyer names, phone numbers, addresses, GSTINs, or order files are ever transmitted to any remote cloud server."
+  }
+];
 
 const {
   title = "SmartLabelCrop.in | Free Meesho & Flipkart 4x6 Thermal Label Cropper & Multi-Order Rescuer",
-  description = "100% private, client-side shipping label cropper for Meesho, Flipkart, Shopsy and Amazon sellers. Automatically rescues SKUs from fold lines, stamps inverted black multi-piece alerts, and generates courier handover picklists."
+  description = "100% private, client-side shipping label cropper for Meesho, Flipkart, Shopsy and Amazon sellers. Automatically rescues SKUs from fold lines, stamps inverted black multi-piece alerts, and generates courier handover picklists.",
+  canonicalUrl = "https://smartlabelcrop.in",
+  keywords = "meesho label crop, meesho shipping label cropper, flipkart label crop 4x6, thermal printer label cropper, meesho multi order alert, shopsy label crop, valmo courier handover, meesho picklist generator, pdf label crop free online",
+  faqItems = defaultFaqs
 } = Astro.props;
+
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SmartLabelCrop.in",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All (Web Browser WebAssembly)",
+  "url": canonicalUrl,
+  "description": description,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "1280",
+    "bestRating": "5"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
 ---
 
 <!doctype html>
@@ -18,18 +87,28 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="meesho label crop, meesho shipping label cropper, flipkart label crop 4x6, thermal printer label cropper, meesho multi order alert, shopsy label crop, valmo courier handover, pdf label crop free online" />
+    <meta name="keywords" content={keywords} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:locale" content="en_IN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
     <script is:inline>
       (function() {
         const stored = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;

@@ -1,0 +1,106 @@
+---
+// src/pages/meesho-label-cropper.astro
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import CropperWorkspace from '../components/CropperWorkspace.astro';
+import MultiOrderAlertSection from '../components/MultiOrderAlertSection.astro';
+import PrinterSetupGuide from '../components/PrinterSetupGuide.astro';
+import WhyFreeAndComparison from '../components/WhyFreeAndComparison.astro';
+import FooterDirectory from '../components/FooterDirectory.astro';
+
+const meeshoFaqs = [
+  {
+    question: "How do I download and crop Meesho shipping labels for thermal printing?",
+    answer: "Log into your Meesho Supplier Panel, navigate to 'Orders' > 'Ready to Ship', select your daily batch, and click 'Download Labels' to get the consolidated A4 PDF. Drag and drop that PDF here on SmartLabelCrop.in to instantly convert them into 4x6 thermal stickers."
+  },
+  {
+    question: "Why does the Meesho SKU disappear below the fold line?",
+    answer: "Meesho prints buyer addresses with variable lines followed by a Tax Invoice divider. On 4x6 thermal roll printers, the item SKU and size frequently get cut off below the print boundary. SmartLabelCrop's dynamic fold-line parser rescues the SKU and size, stamping them in an enlarged 72pt footer at the bottom."
+  },
+  {
+    question: "Does SmartLabelCrop work with Valmo Express courier pickups?",
+    answer: "Yes, 100%! Valmo pickup executives require clear, high-contrast barcodes and exact courier handover tallies. Our vector embedding ensures crisp 203 DPI laser scanning, and our 4-key hierarchy groups all Valmo parcels together for 6 PM pickup."
+  },
+  {
+    question: "How does the inverted multi-order box stop RTO loss on Meesho?",
+    answer: "Whenever a buyer orders 2 or more units, Meesho only prints a tiny 'Qty: 2' in faint 6pt text. Packing boys in busy warehouses routinely miss it and ship 1 piece, leading to customer disputes and ₹300-₹500 RTO deductions. SmartLabelCrop automatically stamps a solid black banner: '[★ MULTI-ORDER: PACK X PCS ★]'."
+  }
+];
+---
+
+<Layout
+  title="Meesho Label Cropper 4x6 Free Online | Cut Tax Invoice & Rescue SKU"
+  description="Crop Meesho A4 shipping label PDFs into 4x6 inch thermal roll formats instantly. Rescues hidden SKUs, stamps inverted multi-order pack alerts, and groups Valmo courier orders."
+  canonicalUrl="https://smartlabelcrop.in/meesho-label-cropper"
+  keywords="meesho label cropper, meesho label crop 4x6, meesho shipping label pdf resize, meesho invoice cut, valmo courier label crop, free meesho label cropper online"
+  faqItems={meeshoFaqs}
+>
+  <Navbar />
+  
+  <main class="flex-1">
+    <!-- Tailored Meesho Hero Header -->
+    <section class="pt-12 pb-6 bg-gradient-to-b from-orange-50/50 via-white to-white dark:from-neutral-900/40 dark:via-[#0A0A0A] dark:to-[#0A0A0A] border-b border-neutral-200 dark:border-neutral-800">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+        <div class="inline-flex items-center gap-2 rounded-full border border-orange-200 dark:border-orange-900/60 bg-orange-50 dark:bg-orange-950/30 px-3 py-1 text-xs font-semibold text-[#EA580C] mb-4">
+          ★ DEDICATED TOOL FOR MEESHO SUPPLIERS
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+          Free Meesho 4×6 Thermal Label Cropper
+        </h1>
+        <p class="mt-3 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          Cut messy tax invoice sections, rescue hidden SKUs from the fold line, and prevent missing-piece claims on Valmo, Ekart, and Delhivery pickups.
+        </p>
+      </div>
+    </section>
+
+    <!-- Interactive Cropper Workspace Component -->
+    <CropperWorkspace />
+
+    <!-- Meesho Step-by-Step Dispatch SOP Guide -->
+    <section class="py-16 bg-[#FAFAFA] dark:bg-[#111111] border-b border-neutral-200 dark:border-neutral-800">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center text-[#0A0A0A] dark:text-white font-display mb-10">
+          How Surat & Jaipur Suppliers Ship 500+ Meesho Orders Daily
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161616] p-5 shadow-2xs">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-950/60 text-[#EA580C] font-bold text-sm mb-3">
+              1
+            </div>
+            <h3 class="font-bold text-sm text-[#0A0A0A] dark:text-white">Download Ready to Ship PDF</h3>
+            <p class="mt-1.5 text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              Accept orders in the Meesho Supplier Panel. Go to Ready to Ship, select all daily shipments, and download the consolidated PDF label batch.
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161616] p-5 shadow-2xs">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-950/60 text-[#EA580C] font-bold text-sm mb-3">
+              2
+            </div>
+            <h3 class="font-bold text-sm text-[#0A0A0A] dark:text-white">Drop on SmartLabelCrop</h3>
+            <p class="mt-1.5 text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              In under 2 seconds, WebAssembly strips invoices, enlarges hidden SKUs to 72pt footers, and stamps black multi-piece banners on qty ≥ 2.
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161616] p-5 shadow-2xs">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-950/60 text-[#EA580C] font-bold text-sm mb-3">
+              3
+            </div>
+            <h3 class="font-bold text-sm text-[#0A0A0A] dark:text-white">Handover by Courier Group</h3>
+            <p class="mt-1.5 text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              Export your dispatch register CSV in 1 click and hand organized stacks to Valmo and Ekart pickup executives with zero chaos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <MultiOrderAlertSection />
+    <PrinterSetupGuide />
+    <WhyFreeAndComparison />
+  </main>
+
+  <FooterDirectory />
+</Layout>

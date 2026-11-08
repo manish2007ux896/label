@@ -1,0 +1,106 @@
+---
+// src/pages/flipkart-label-cropper.astro
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import CropperWorkspace from '../components/CropperWorkspace.astro';
+import MultiOrderAlertSection from '../components/MultiOrderAlertSection.astro';
+import PrinterSetupGuide from '../components/PrinterSetupGuide.astro';
+import WhyFreeAndComparison from '../components/WhyFreeAndComparison.astro';
+import FooterDirectory from '../components/FooterDirectory.astro';
+
+const flipkartFaqs = [
+  {
+    question: "How do I format Flipkart Seller Hub PDFs for 4x6 thermal printers?",
+    answer: "Flipkart downloads shipping labels as consolidated PDFs with attached customer tax invoices. Drop your Flipkart PDF directly onto SmartLabelCrop.in. The engine isolates the shipping label, trims out redundant invoice tables, and outputs clean 4x6 inch (100x150 mm) vector PDF files ready for TSC, TVS, and Zebra printers."
+  },
+  {
+    question: "Does it support Shopsy wholesale labels?",
+    answer: "Yes, Shopsy orders share Flipkart's underlying logistics infrastructure (OD order IDs and Ekart routing tokens). SmartLabelCrop automatically detects and parses Shopsy labels, extracting item SKUs, sizes, and quantities."
+  },
+  {
+    question: "Can I print on A4 4-in-1 sticker sheets instead of 4x6 rolls?",
+    answer: "Yes! Under 'Output Format' in the workspace controls, select 'A4 4-in-1 Sheet Grid'. SmartLabelCrop will arrange four cropped labels per A4 page in a 2x2 quadrant layout, ideal for standard deskjet or laser label sheet paper."
+  },
+  {
+    question: "Are Ekart courier barcodes sharp enough for warehouse scanning?",
+    answer: "Absolutely. Our engine preserves 100% native vector paths via pdf-lib vector embedding (`pdfDoc.embedPage()`). Barcodes are never converted into low-resolution PNGs or HTML5 canvas images, passing Ekart scanner guns on first scan."
+  }
+];
+---
+
+<Layout
+  title="Flipkart Label Cropper 4x6 & Shopsy Thermal Label Tool Free Online"
+  description="Crop Flipkart Seller Hub & Shopsy shipping labels into 4x6 thermal format or A4 4-in-1 sheets. Vector barcode preservation for Ekart logistics with zero data uploads."
+  canonicalUrl="https://smartlabelcrop.in/flipkart-label-cropper"
+  keywords="flipkart label cropper, flipkart shipping label 4x6, shopsy label crop, ekart label print, flipkart thermal printer tool, free flipkart label cutter"
+  faqItems={flipkartFaqs}
+>
+  <Navbar />
+  
+  <main class="flex-1">
+    <!-- Tailored Flipkart Hero Header -->
+    <section class="pt-12 pb-6 bg-gradient-to-b from-blue-50/50 via-white to-white dark:from-blue-950/20 dark:via-[#0A0A0A] dark:to-[#0A0A0A] border-b border-neutral-200 dark:border-neutral-800">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+        <div class="inline-flex items-center gap-2 rounded-full border border-blue-200 dark:border-blue-900/60 bg-blue-50 dark:bg-blue-950/30 px-3 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 mb-4">
+          📦 OPTIMIZED FOR FLIPKART & SHOPSY SELLERS
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+          Flipkart & Shopsy 4×6 Label Cropper
+        </h1>
+        <p class="mt-3 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          Transform bulky Flipkart Seller Hub invoices into crisp 4×6 thermal rolls or A4 4-in-1 quadrant stickers. 100% vector scan pass on Ekart handheld barcode scanners.
+        </p>
+      </div>
+    </section>
+
+    <!-- Interactive Cropper Workspace Component -->
+    <CropperWorkspace />
+
+    <!-- Feature Pillar Grid for Flipkart Merchants -->
+    <section class="py-16 bg-[#FAFAFA] dark:bg-[#111111] border-b border-neutral-200 dark:border-neutral-800">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center text-[#0A0A0A] dark:text-white font-display mb-10">
+          Engineered for High-Volume Flipkart Seller Hub Operations
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161616] p-5 shadow-2xs">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 font-bold text-sm mb-3">
+              ⚡
+            </div>
+            <h3 class="font-bold text-sm text-[#0A0A0A] dark:text-white">Ekart Vector Crispness</h3>
+            <p class="mt-1.5 text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              Native vector math embedding keeps Code 128 and 2D routing barcodes ultra-sharp on 203 DPI thermal print heads. Zero doorstep rejections.
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161616] p-5 shadow-2xs">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 font-bold text-sm mb-3">
+              📐
+            </div>
+            <h3 class="font-bold text-sm text-[#0A0A0A] dark:text-white">A4 4-in-1 Quadrants</h3>
+            <p class="mt-1.5 text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              Don't have a thermal roll printer yet? Print 4 shipping labels per standard A4 paper sheet with zero manual scissors work.
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#161616] p-5 shadow-2xs">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 font-bold text-sm mb-3">
+              🛡️
+            </div>
+            <h3 class="font-bold text-sm text-[#0A0A0A] dark:text-white">IndexedDB Duplicate Guard</h3>
+            <p class="mt-1.5 text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+              Prevents printing identical Flipkart OD shipments twice. Sub-10ms local memory lookup shields your store from double-dispatch penalties.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <MultiOrderAlertSection />
+    <PrinterSetupGuide />
+    <WhyFreeAndComparison />
+  </main>
+
+  <FooterDirectory />
+</Layout>

@@ -6,10 +6,12 @@ import type { SortMode, OutputMode } from '../../types/marketplace.ts';
 import { reconstructLinesFromPdfJsItems, type RawPdfTextItem } from './textReconstructor.ts';
 import { parseMeeshoPage } from './parsers/meeshoParser.ts';
 import { parseFlipkartOrShopsyPage } from './parsers/flipkartParser.ts';
+import { parseAmazonEasyShipPage, parseGlowroadPage } from './parsers/amazonAndGlowroadParser.ts';
 import { sortParsedLabels } from './sortLabels.ts';
 import { renderThermal4x6Document } from './renderThermal4x6.ts';
 import { prependThermalPicklistPages } from './renderPicklist4x6.ts';
 import { checkDuplicateAwbsLocal, recordPrintedAwbsLocal, type DuplicateDetectionResult } from '../storage/awbDeduplicator.ts';
+import { localDb } from '../storage/localDb.ts';
 
 // Configure local worker path for offline resilience
 if (typeof window !== 'undefined' && pdfjsLib.GlobalWorkerOptions) {
@@ -78,6 +80,10 @@ export async function processSellerBatch(input: ProcessBatchInput): Promise<Proc
       let parsed: ParsedLabelPage;
       if (/\b(Flipkart|E-?Kart|OD\d{15,})\b/i.test(pageText)) {
         parsed = parseFlipkartOrShopsyPage(lines, file.id, p - 1, viewport.width, viewport.height);
+      } else if (/\b(Amazon|ATS|Easy\s*Ship|\d{3}-\d{7}-\d{7})\b/i.test(pageText)) {
+        parsed = parseAmazonEasyShipPage(lines, file.id, p - 1, viewport.width, viewport.height);
+      } else if (/\b(GlowRoad|GLW\d{6,})\b/i.test(pageText)) {
+        parsed = parseGlowroadPage(lines, file.id, p - 1, viewport.width, viewport.height);
       } else {
         parsed = parseMeeshoPage(lines, file.id, p - 1, viewport.width, viewport.height);
       }
@@ -113,7 +119,36 @@ export async function processSellerBatch(input: ProcessBatchInput): Promise<Proc
     }
   }
 
-  // 3. Filter excluded SKUs, couriers, or duplicates
+  // 3. Enrich labels with Warehouse Rack & Bin locations from local SKU dictionary (if available)
+  try {
+    const skuDict = await localDb.skuDictionary.toArray();
+    if (skuDict && skuDict.length > 0) {
+      const skuMap = new Map<string, { rackCode: string; packerNickname: string }>();
+      for (const entry of skuDict) {
+        skuMap.set(entry.rawSku.trim().toUpperCase(), {
+          rackCode: entry.rackCode,
+          packerNickname: entry.packerNickname
+        });
+      }
+
+      for (const l of parsedLabels) {
+        const cleanSku = (l.sku || '').trim().toUpperCase();
+        const match = skuMap.get(cleanSku);
+        if (match) {
+          if (!l.rackCode || l.rackCode === 'UNASSIGNED') {
+            l.rackCode = match.rackCode;
+          }
+          if (!l.packerNickname) {
+            l.packerNickname = match.packerNickname;
+          }
+        }
+      }
+    }
+  } catch (err) {
+    // Non-blocking in environments without IndexedDB (e.g. Node tests)
+  }
+
+  // 4. Filter excluded SKUs, couriers, or duplicates
   let activeLabels = parsedLabels.filter(l => {
     if (options.skipDuplicates && l.isDuplicate) return false;
     if (options.excludedSkus && options.excludedSkus.has(l.sku)) return false;
