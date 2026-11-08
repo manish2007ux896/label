@@ -1,0 +1,340 @@
+---
+// src/components/WhyFreeAndComparison.astro
+---
+
+<section id="why-free" class="py-16 sm:py-24 bg-white dark:bg-[#0A0A0A] border-b border-border dark:border-neutral-800 transition-colors">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="inline-flex items-center gap-2 mb-3">
+        <span class="h-2 w-2 rounded-[2px] bg-[#EA580C]"></span>
+        <span class="text-xs font-semibold uppercase tracking-wider text-[#525252] dark:text-neutral-400">
+          Built For Indian Sellers
+        </span>
+      </div>
+      
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+        100% Free Forever.<br />
+        Engineered for Maximum Speed & Trust.
+      </h2>
+      
+      <p class="mt-4 text-sm sm:text-base text-[#525252] dark:text-neutral-400 font-body leading-relaxed">
+        No sign-up required. No daily order limits. No watermarks. We built SmartLabelCrop to fix the painful dispatch mistakes that cost Indian fashion and e-commerce sellers thousands of rupees every month.
+      </p>
+    </div>
+
+    <!-- 4 Core Pillars of Trust Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+      
+      <div class="rounded-xl border border-border dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#111111] p-5">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-black dark:bg-white text-white dark:text-black mb-3">
+          <svg class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+          </svg>
+        </div>
+        <h3 class="text-sm font-bold text-[#0A0A0A] dark:text-white">Zero Sign-Up Required</h3>
+        <p class="mt-1.5 text-xs text-[#525252] dark:text-neutral-400 leading-relaxed">
+          Never enter your phone number, email, or password. Open the page and crop your labels immediately.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-border dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#111111] p-5">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-black dark:bg-white text-white dark:text-black mb-3">
+          <svg class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+        </div>
+        <h3 class="text-sm font-bold text-[#0A0A0A] dark:text-white">100% Client-Side Privacy</h3>
+        <p class="mt-1.5 text-xs text-[#525252] dark:text-neutral-400 leading-relaxed">
+          Everything runs in your browser via WebAssembly. Zero buyer addresses or phone numbers leave your machine.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-border dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#111111] p-5">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-black dark:bg-white text-white dark:text-black mb-3">
+          <svg class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h3 class="text-sm font-bold text-[#0A0A0A] dark:text-white">Unlimited Daily Orders</h3>
+        <p class="mt-1.5 text-xs text-[#525252] dark:text-neutral-400 leading-relaxed">
+          Whether you pack 10 orders or 1,000 orders every evening, process your entire batch in under 2 seconds.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-border dark:border-neutral-800 bg-[#FAFAFA] dark:bg-[#111111] p-5">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-black dark:bg-white text-white dark:text-black mb-3">
+          <svg class="h-4.5 w-4.5 text-[#EA580C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="text-sm font-bold text-[#0A0A0A] dark:text-white">No Watermarks Ever</h3>
+        <p class="mt-1.5 text-xs text-[#525252] dark:text-neutral-400 leading-relaxed">
+          Clean, crisp 4×6 thermal vector stickers that look 100% professional and pass courier scanner checks on first try.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Competitor Comparison Section Header -->
+    <div class="mb-8">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="h-2 w-2 rounded-[2px] bg-[#EA580C]"></span>
+        <span class="text-xs font-semibold uppercase tracking-wider text-[#525252] dark:text-neutral-400">Head-to-Head Comparison</span>
+      </div>
+      <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#0A0A0A] dark:text-white font-display">
+        How SmartLabelCrop Compares to Other Alternatives
+      </h3>
+      <p class="mt-1.5 text-xs sm:text-sm text-[#525252] dark:text-neutral-400 font-body">
+        See why Surat, Jaipur, and Tirupur suppliers are ditching generic croppers and screenshot workarounds:
+      </p>
+    </div>
+
+    <!-- Comparison Table Card -->
+    <div class="rounded-2xl border border-border dark:border-neutral-800 bg-white dark:bg-[#111111] shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs font-body border-collapse">
+          
+          <thead>
+            <tr class="border-b border-border dark:border-neutral-800 bg-neutral-50/80 dark:bg-[#161616]">
+              <th class="py-4 px-4 sm:px-6 text-xs font-bold uppercase tracking-wider text-[#0A0A0A] dark:text-white w-1/4">
+                Capability / Feature
+              </th>
+              <th class="py-4 px-4 sm:px-6 text-xs font-bold uppercase tracking-wider text-[#EA580C] bg-orange-50/50 dark:bg-orange-950/20 border-x border-orange-200/60 dark:border-orange-900/40 w-5/12">
+                <div class="flex items-center gap-2">
+                  <span class="h-2 w-2 rounded-[2px] bg-[#EA580C]"></span>
+                  SmartLabelCrop.in (Our Tool)
+                </div>
+              </th>
+              <th class="py-4 px-4 sm:px-6 text-xs font-semibold uppercase tracking-wider text-[#525252] dark:text-neutral-400 w-1/6">
+                Other Online Croppers
+              </th>
+              <th class="py-4 px-4 sm:px-6 text-xs font-semibold uppercase tracking-wider text-[#525252] dark:text-neutral-400 w-1/6">
+                Manual Cutting / Scissors
+              </th>
+            </tr>
+          </thead>
+
+          <tbody class="divide-y divide-border dark:divide-neutral-800/80">
+            
+            <!-- Row 1: Cost & Limits -->
+            <tr class="hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-semibold text-[#0A0A0A] dark:text-white">
+                Price & Usage Limits
+              </td>
+              <td class="py-4 px-4 sm:px-6 bg-orange-50/30 dark:bg-orange-950/10 border-x border-orange-200/60 dark:border-orange-900/40 font-medium text-[#0A0A0A] dark:text-white">
+                <div class="flex items-start gap-2">
+                  <span class="text-emerald-600 dark:text-emerald-400 font-bold text-sm">✓</span>
+                  <div>
+                    <strong class="text-emerald-700 dark:text-emerald-400">100% Free Forever</strong>
+                    <div class="text-[11px] text-[#525252] dark:text-neutral-400">No subscriptions, no hidden limits, no credit card.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                <span class="text-red-500 font-bold">✗</span> Free for 20 labels, then demands ₹299 - ₹599/month.
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                Free, but costs 2+ hours of packing labor every day.
+              </td>
+            </tr>
+
+            <!-- Row 2: Data Security & DPDP -->
+            <tr class="hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-semibold text-[#0A0A0A] dark:text-white">
+                Buyer Privacy & Security
+              </td>
+              <td class="py-4 px-4 sm:px-6 bg-orange-50/30 dark:bg-orange-950/10 border-x border-orange-200/60 dark:border-orange-900/40 font-medium text-[#0A0A0A] dark:text-white">
+                <div class="flex items-start gap-2">
+                  <span class="text-emerald-600 dark:text-emerald-400 font-bold text-sm">✓</span>
+                  <div>
+                    <strong class="text-emerald-700 dark:text-emerald-400">100% Client-Side WebAssembly</strong>
+                    <div class="text-[11px] text-[#525252] dark:text-neutral-400">Zero files uploaded. Works completely offline. Full DPDP Act compliance.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                <span class="text-red-500 font-bold">✗</span> Uploads customer phone numbers and GSTINs to cloud servers.
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                Local, but vulnerable to physical paper loss.
+              </td>
+            </tr>
+
+            <!-- Row 3: Multi-Piece Loss Prevention -->
+            <tr class="hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-semibold text-[#0A0A0A] dark:text-white">
+                Multi-Quantity Loss Prevention
+              </td>
+              <td class="py-4 px-4 sm:px-6 bg-orange-50/30 dark:bg-orange-950/10 border-x border-orange-200/60 dark:border-orange-900/40 font-medium text-[#0A0A0A] dark:text-white">
+                <div class="flex items-start gap-2">
+                  <span class="text-emerald-600 dark:text-emerald-400 font-bold text-sm">✓</span>
+                  <div>
+                    <strong class="text-[#EA580C]">Inverted Black [★ MULTI-ORDER ★] Box</strong>
+                    <div class="text-[11px] text-[#525252] dark:text-neutral-400">Automatically stamps unmissable banner when qty ≥ 2. Stops ₹300-₹500 RTO loss.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                <span class="text-red-500 font-bold">✗</span> None. Tiny 6pt quantity gets routinely missed by packing boys.
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                <span class="text-red-500 font-bold">✗</span> Requires workers to manually read every tiny invoice line.
+              </td>
+            </tr>
+
+            <!-- Row 4: Rescued SKU & Size -->
+            <tr class="hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-semibold text-[#0A0A0A] dark:text-white">
+                Rescued SKU & Apparel Size
+              </td>
+              <td class="py-4 px-4 sm:px-6 bg-orange-50/30 dark:bg-orange-950/10 border-x border-orange-200/60 dark:border-orange-900/40 font-medium text-[#0A0A0A] dark:text-white">
+                <div class="flex items-start gap-2">
+                  <span class="text-emerald-600 dark:text-emerald-400 font-bold text-sm">✓</span>
+                  <div>
+                    <strong>Dynamic Fold-Line Extraction</strong>
+                    <div class="text-[11px] text-[#525252] dark:text-neutral-400">Rescues hidden bottom invoice details and stamps SKU, Size (XS-3XL), and Color in 12pt bold.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                <span class="text-red-500 font-bold">✗</span> Cuts off SKU or hides it below the fold line.
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                Workers manually write SKU on polybag with marker.
+              </td>
+            </tr>
+
+            <!-- Row 5: Vector Barcode Quality -->
+            <tr class="hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-semibold text-[#0A0A0A] dark:text-white">
+                Barcode Quality & 203 DPI Scan
+              </td>
+              <td class="py-4 px-4 sm:px-6 bg-orange-50/30 dark:bg-orange-950/10 border-x border-orange-200/60 dark:border-orange-900/40 font-medium text-[#0A0A0A] dark:text-white">
+                <div class="flex items-start gap-2">
+                  <span class="text-emerald-600 dark:text-emerald-400 font-bold text-sm">✓</span>
+                  <div>
+                    <strong>100% Native Vector Embedding</strong>
+                    <div class="text-[11px] text-[#525252] dark:text-neutral-400">Zero image rasterization. 100% scan pass on Valmo, Ekart, and Delhivery guns.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                <span class="text-red-500 font-bold">✗</span> Converts to fuzzy HTML5 canvas images that fail barcode scans.
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                Folded paper barcodes often wrinkle and get rejected.
+              </td>
+            </tr>
+
+            <!-- Row 6: Courier Handover Sorting -->
+            <tr class="hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-semibold text-[#0A0A0A] dark:text-white">
+                Courier Handover Sorting
+              </td>
+              <td class="py-4 px-4 sm:px-6 bg-orange-50/30 dark:bg-orange-950/10 border-x border-orange-200/60 dark:border-orange-900/40 font-medium text-[#0A0A0A] dark:text-white">
+                <div class="flex items-start gap-2">
+                  <span class="text-emerald-600 dark:text-emerald-400 font-bold text-sm">✓</span>
+                  <div>
+                    <strong>Smart 4-Key Courier Hierarchy</strong>
+                    <div class="text-[11px] text-[#525252] dark:text-neutral-400">Groups Valmo, Ekart, and Delhivery labels together for organized 6 PM pickup.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                <span class="text-red-500 font-bold">✗</span> Random sequence. Sellers scramble during courier arrival.
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                Manual physical piles across the packing floor.
+              </td>
+            </tr>
+
+            <!-- Row 7: Thermal Picklist Sticker -->
+            <tr class="hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-semibold text-[#0A0A0A] dark:text-white">
+                Page-1 Thermal Picklist Sticker
+              </td>
+              <td class="py-4 px-4 sm:px-6 bg-orange-50/30 dark:bg-orange-950/10 border-x border-orange-200/60 dark:border-orange-900/40 font-medium text-[#0A0A0A] dark:text-white">
+                <div class="flex items-start gap-2">
+                  <span class="text-emerald-600 dark:text-emerald-400 font-bold text-sm">✓</span>
+                  <div>
+                    <strong>Included Free (Sticker #1)</strong>
+                    <div class="text-[11px] text-[#525252] dark:text-neutral-400">Generates instant 4×6 inventory picklist with courier handover tallies.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                <span class="text-red-500 font-bold">✗</span> Requires expensive third-party ERP or WMS software.
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                Handwritten pen and paper notes prone to errors.
+              </td>
+            </tr>
+
+            <!-- Row 8: Duplicate AWB Protection -->
+            <tr class="hover:bg-neutral-50/50 dark:hover:bg-neutral-800/30 transition-colors">
+              <td class="py-4 px-4 sm:px-6 font-semibold text-[#0A0A0A] dark:text-white">
+                Double Dispatch Protection
+              </td>
+              <td class="py-4 px-4 sm:px-6 bg-orange-50/30 dark:bg-orange-950/10 border-x border-orange-200/60 dark:border-orange-900/40 font-medium text-[#0A0A0A] dark:text-white">
+                <div class="flex items-start gap-2">
+                  <span class="text-emerald-600 dark:text-emerald-400 font-bold text-sm">✓</span>
+                  <div>
+                    <strong>30-Day IndexedDB Memory Guard</strong>
+                    <div class="text-[11px] text-[#525252] dark:text-neutral-400">Sub-10ms lookup detects and blocks accidental double-printing of same AWB.</div>
+                  </div>
+                </div>
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                <span class="text-red-500 font-bold">✗</span> Prints duplicates repeatedly with zero warning.
+              </td>
+              <td class="py-4 px-4 sm:px-6 text-[#525252] dark:text-neutral-400">
+                High risk of double packing identical orders.
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Bottom Conversion Banner -->
+    <div class="mt-14 rounded-2xl border border-neutral-800 dark:border-neutral-700 bg-[#0A0A0A] dark:bg-[#141414] p-8 sm:p-12 text-center text-white shadow-xl relative overflow-hidden">
+      <!-- Glow -->
+      <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div class="h-48 w-96 rounded-full bg-[#EA580C]/20 blur-3xl"></div>
+      </div>
+
+      <div class="relative max-w-2xl mx-auto">
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-neutral-700 bg-neutral-900 px-3 py-1 text-[11px] font-semibold text-[#EA580C] mb-4">
+          ★ ZERO COST &bull; ZERO SIGN-UP &bull; INSTANT ACCESS
+        </span>
+
+        <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display">
+          Ready to save 2 hours on dispatch tonight?
+        </h3>
+
+        <p class="mt-3 text-xs sm:text-sm text-neutral-400 font-body">
+          Drop your Meesho or Flipkart PDF above, or click below to test with our instant sample batch.
+        </p>
+
+        <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            href="#cropper"
+            class="w-full sm:w-auto inline-flex items-center justify-center rounded-md bg-white px-5 py-2.5 text-xs font-bold text-[#0A0A0A] hover:bg-neutral-100 transition-colors shadow-sm cursor-pointer"
+          >
+            Start Cropping Labels Free
+          </a>
+          <button
+            onclick="document.getElementById('btn-sample-batch')?.click(); window.location.hash = '#cropper';"
+            class="w-full sm:w-auto inline-flex items-center justify-center rounded-md border border-neutral-700 bg-neutral-900 px-5 py-2.5 text-xs font-medium text-neutral-200 hover:bg-neutral-800 transition-colors cursor-pointer"
+          >
+            Load 15-Order Test Batch
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
